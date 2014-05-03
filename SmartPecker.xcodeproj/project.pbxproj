@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		62B4E55819148C0C000EA9F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55719148C0C000EA9F1 /* Foundation.framework */; };
+		62B4E55A19148C0C000EA9F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55919148C0C000EA9F1 /* CoreGraphics.framework */; };
+		62B4E55C19148C0C000EA9F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55B19148C0C000EA9F1 /* UIKit.framework */; };
+		62B4E56219148C0C000EA9F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B4E56019148C0C000EA9F1 /* InfoPlist.strings */; };
+		62B4E56419148C0C000EA9F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4E56319148C0C000EA9F1 /* main.m */; };
+		62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4E56719148C0C000EA9F1 /* SPAAppDelegate.m */; };
+		62B4E56A19148C0C000EA9F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B4E56919148C0C000EA9F1 /* Images.xcassets */; };
+		62B4E57119148C0C000EA9F1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E57019148C0C000EA9F1 /* XCTest.framework */; };
+		62B4E57219148C0C000EA9F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55719148C0C000EA9F1 /* Foundation.framework */; };
+		62B4E57319148C0C000EA9F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55B19148C0C000EA9F1 /* UIKit.framework */; };
+		62B4E57B19148C0C000EA9F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B4E57919148C0C000EA9F1 /* InfoPlist.strings */; };
+		62B4E57D19148C0C000EA9F1 /* SmartPeckerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4E57C19148C0C000EA9F1 /* SmartPeckerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		62B4E57419148C0C000EA9F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62B4E54C19148C0C000EA9F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 62B4E55319148C0C000EA9F1;
+			remoteInfo = SmartPecker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		62B4E55419148C0C000EA9F1 /* SmartPecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B4E55719148C0C000EA9F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		62B4E55919148C0C000EA9F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		62B4E55B19148C0C000EA9F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		62B4E55F19148C0C000EA9F1 /* SmartPecker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartPecker-Info.plist"; sourceTree = "<group>"; };
+		62B4E56119148C0C000EA9F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		62B4E56319148C0C000EA9F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		62B4E56519148C0C000EA9F1 /* SmartPecker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartPecker-Prefix.pch"; sourceTree = "<group>"; };
+		62B4E56619148C0C000EA9F1 /* SPAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAAppDelegate.h; sourceTree = "<group>"; };
+		62B4E56719148C0C000EA9F1 /* SPAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAAppDelegate.m; sourceTree = "<group>"; };
+		62B4E56919148C0C000EA9F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		62B4E56F19148C0C000EA9F1 /* SmartPeckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartPeckerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B4E57019148C0C000EA9F1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		62B4E57819148C0C000EA9F1 /* SmartPeckerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartPeckerTests-Info.plist"; sourceTree = "<group>"; };
+		62B4E57A19148C0C000EA9F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		62B4E57C19148C0C000EA9F1 /* SmartPeckerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartPeckerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		62B4E55119148C0C000EA9F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B4E55A19148C0C000EA9F1 /* CoreGraphics.framework in Frameworks */,
+				62B4E55C19148C0C000EA9F1 /* UIKit.framework in Frameworks */,
+				62B4E55819148C0C000EA9F1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62B4E56C19148C0C000EA9F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B4E57119148C0C000EA9F1 /* XCTest.framework in Frameworks */,
+				62B4E57319148C0C000EA9F1 /* UIKit.framework in Frameworks */,
+				62B4E57219148C0C000EA9F1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62B4E54B19148C0C000EA9F1 = {
+			isa = PBXGroup;
+			children = (
+				62B4E55D19148C0C000EA9F1 /* SmartPecker */,
+				62B4E57619148C0C000EA9F1 /* SmartPeckerTests */,
+				62B4E55619148C0C000EA9F1 /* Frameworks */,
+				62B4E55519148C0C000EA9F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		62B4E55519148C0C000EA9F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				62B4E55419148C0C000EA9F1 /* SmartPecker.app */,
+				62B4E56F19148C0C000EA9F1 /* SmartPeckerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		62B4E55619148C0C000EA9F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62B4E55719148C0C000EA9F1 /* Foundation.framework */,
+				62B4E55919148C0C000EA9F1 /* CoreGraphics.framework */,
+				62B4E55B19148C0C000EA9F1 /* UIKit.framework */,
+				62B4E57019148C0C000EA9F1 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		62B4E55D19148C0C000EA9F1 /* SmartPecker */ = {
+			isa = PBXGroup;
+			children = (
+				62B4E56619148C0C000EA9F1 /* SPAAppDelegate.h */,
+				62B4E56719148C0C000EA9F1 /* SPAAppDelegate.m */,
+				62B4E56919148C0C000EA9F1 /* Images.xcassets */,
+				62B4E55E19148C0C000EA9F1 /* Supporting Files */,
+			);
+			path = SmartPecker;
+			sourceTree = "<group>";
+		};
+		62B4E55E19148C0C000EA9F1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				62B4E55F19148C0C000EA9F1 /* SmartPecker-Info.plist */,
+				62B4E56019148C0C000EA9F1 /* InfoPlist.strings */,
+				62B4E56319148C0C000EA9F1 /* main.m */,
+				62B4E56519148C0C000EA9F1 /* SmartPecker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62B4E57619148C0C000EA9F1 /* SmartPeckerTests */ = {
+			isa = PBXGroup;
+			children = (
+				62B4E57C19148C0C000EA9F1 /* SmartPeckerTests.m */,
+				62B4E57719148C0C000EA9F1 /* Supporting Files */,
+			);
+			path = SmartPeckerTests;
+			sourceTree = "<group>";
+		};
+		62B4E57719148C0C000EA9F1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				62B4E57819148C0C000EA9F1 /* SmartPeckerTests-Info.plist */,
+				62B4E57919148C0C000EA9F1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		62B4E55319148C0C000EA9F1 /* SmartPecker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62B4E58019148C0C000EA9F1 /* Build configuration list for PBXNativeTarget "SmartPecker" */;
+			buildPhases = (
+				62B4E55019148C0C000EA9F1 /* Sources */,
+				62B4E55119148C0C000EA9F1 /* Frameworks */,
+				62B4E55219148C0C000EA9F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmartPecker;
+			productName = SmartPecker;
+			productReference = 62B4E55419148C0C000EA9F1 /* SmartPecker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		62B4E56E19148C0C000EA9F1 /* SmartPeckerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62B4E58319148C0C000EA9F1 /* Build configuration list for PBXNativeTarget "SmartPeckerTests" */;
+			buildPhases = (
+				62B4E56B19148C0C000EA9F1 /* Sources */,
+				62B4E56C19148C0C000EA9F1 /* Frameworks */,
+				62B4E56D19148C0C000EA9F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				62B4E57519148C0C000EA9F1 /* PBXTargetDependency */,
+			);
+			name = SmartPeckerTests;
+			productName = SmartPeckerTests;
+			productReference = 62B4E56F19148C0C000EA9F1 /* SmartPeckerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		62B4E54C19148C0C000EA9F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SPA;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Danilau;
+				TargetAttributes = {
+					62B4E56E19148C0C000EA9F1 = {
+						TestTargetID = 62B4E55319148C0C000EA9F1;
+					};
+				};
+			};
+			buildConfigurationList = 62B4E54F19148C0C000EA9F1 /* Build configuration list for PBXProject "SmartPecker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 62B4E54B19148C0C000EA9F1;
+			productRefGroup = 62B4E55519148C0C000EA9F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				62B4E55319148C0C000EA9F1 /* SmartPecker */,
+				62B4E56E19148C0C000EA9F1 /* SmartPeckerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		62B4E55219148C0C000EA9F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B4E56219148C0C000EA9F1 /* InfoPlist.strings in Resources */,
+				62B4E56A19148C0C000EA9F1 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62B4E56D19148C0C000EA9F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B4E57B19148C0C000EA9F1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		62B4E55019148C0C000EA9F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B4E56419148C0C000EA9F1 /* main.m in Sources */,
+				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62B4E56B19148C0C000EA9F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B4E57D19148C0C000EA9F1 /* SmartPeckerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		62B4E57519148C0C000EA9F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 62B4E55319148C0C000EA9F1 /* SmartPecker */;
+			targetProxy = 62B4E57419148C0C000EA9F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		62B4E56019148C0C000EA9F1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62B4E56119148C0C000EA9F1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		62B4E57919148C0C000EA9F1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62B4E57A19148C0C000EA9F1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		62B4E57E19148C0C000EA9F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		62B4E57F19148C0C000EA9F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		62B4E58119148C0C000EA9F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartPecker/SmartPecker-Prefix.pch";
+				INFOPLIST_FILE = "SmartPecker/SmartPecker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		62B4E58219148C0C000EA9F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartPecker/SmartPecker-Prefix.pch";
+				INFOPLIST_FILE = "SmartPecker/SmartPecker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		62B4E58419148C0C000EA9F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SmartPecker.app/SmartPecker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartPecker/SmartPecker-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SmartPeckerTests/SmartPeckerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		62B4E58519148C0C000EA9F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SmartPecker.app/SmartPecker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SmartPecker/SmartPecker-Prefix.pch";
+				INFOPLIST_FILE = "SmartPeckerTests/SmartPeckerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		62B4E54F19148C0C000EA9F1 /* Build configuration list for PBXProject "SmartPecker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62B4E57E19148C0C000EA9F1 /* Debug */,
+				62B4E57F19148C0C000EA9F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62B4E58019148C0C000EA9F1 /* Build configuration list for PBXNativeTarget "SmartPecker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62B4E58119148C0C000EA9F1 /* Debug */,
+				62B4E58219148C0C000EA9F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		62B4E58319148C0C000EA9F1 /* Build configuration list for PBXNativeTarget "SmartPeckerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62B4E58419148C0C000EA9F1 /* Debug */,
+				62B4E58519148C0C000EA9F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 62B4E54C19148C0C000EA9F1 /* Project object */;
+}
