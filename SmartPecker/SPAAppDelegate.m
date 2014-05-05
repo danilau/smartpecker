@@ -7,6 +7,7 @@
 //
 
 #import "SPAAppDelegate.h"
+#import "SPALoginViewController.h"
 
 @implementation SPAAppDelegate
 
@@ -14,6 +15,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
+    
+    self.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
+      
+    self.window.rootViewController = self.spaNavigationController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

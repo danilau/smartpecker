@@ -19,6 +19,9 @@
 		62B4E57319148C0C000EA9F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55B19148C0C000EA9F1 /* UIKit.framework */; };
 		62B4E57B19148C0C000EA9F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62B4E57919148C0C000EA9F1 /* InfoPlist.strings */; };
 		62B4E57D19148C0C000EA9F1 /* SmartPeckerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4E57C19148C0C000EA9F1 /* SmartPeckerTests.m */; };
+		62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71CF8191729AD00F4685C /* SPANavigationController.m */; };
+		62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D0019172AA400F4685C /* SPALoginViewController.m */; };
+		62B71D0319172AA400F4685C /* SPALoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D0119172AA400F4685C /* SPALoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,11 @@
 		62B4E57819148C0C000EA9F1 /* SmartPeckerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartPeckerTests-Info.plist"; sourceTree = "<group>"; };
 		62B4E57A19148C0C000EA9F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		62B4E57C19148C0C000EA9F1 /* SmartPeckerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartPeckerTests.m; sourceTree = "<group>"; };
+		62B71CF7191729AC00F4685C /* SPANavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPANavigationController.h; sourceTree = "<group>"; };
+		62B71CF8191729AD00F4685C /* SPANavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPANavigationController.m; sourceTree = "<group>"; };
+		62B71CFF19172AA400F4685C /* SPALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPALoginViewController.h; sourceTree = "<group>"; };
+		62B71D0019172AA400F4685C /* SPALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPALoginViewController.m; sourceTree = "<group>"; };
+		62B71D0119172AA400F4685C /* SPALoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPALoginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +115,7 @@
 		62B4E55D19148C0C000EA9F1 /* SmartPecker */ = {
 			isa = PBXGroup;
 			children = (
+				62B71CF61917298500F4685C /* UI */,
 				62B4E56619148C0C000EA9F1 /* SPAAppDelegate.h */,
 				62B4E56719148C0C000EA9F1 /* SPAAppDelegate.m */,
 				62B4E56919148C0C000EA9F1 /* Images.xcassets */,
@@ -142,6 +151,18 @@
 				62B4E57919148C0C000EA9F1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62B71CF61917298500F4685C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				62B71CFF19172AA400F4685C /* SPALoginViewController.h */,
+				62B71D0019172AA400F4685C /* SPALoginViewController.m */,
+				62B71D0119172AA400F4685C /* SPALoginViewController.xib */,
+				62B71CF7191729AC00F4685C /* SPANavigationController.h */,
+				62B71CF8191729AD00F4685C /* SPANavigationController.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62B4E56219148C0C000EA9F1 /* InfoPlist.strings in Resources */,
+				62B71D0319172AA400F4685C /* SPALoginViewController.xib in Resources */,
 				62B4E56A19148C0C000EA9F1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,8 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */,
 				62B4E56419148C0C000EA9F1 /* main.m in Sources */,
 				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
+				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +462,7 @@
 				62B4E58219148C0C000EA9F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62B4E58319148C0C000EA9F1 /* Build configuration list for PBXNativeTarget "SmartPeckerTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +471,7 @@
 				62B4E58519148C0C000EA9F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

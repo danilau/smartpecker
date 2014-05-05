@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPANavigationController.h"
 
 @interface SPAAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) SPANavigationController *spaNavigationController;
 
 @end
