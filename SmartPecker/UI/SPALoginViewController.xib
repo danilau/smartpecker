@@ -6,6 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SPALoginViewController">
             <connections>
+                <outlet property="forgetPasswordButtonVerticalSpaceConstraint" destination="xss-xk-aFQ" id="CBT-ME-NFY"/>
+                <outlet property="loginButtonVerticalSpaceConstraint" destination="eMY-aM-SLv" id="ZuU-Zd-JrX"/>
+                <outlet property="loginTextField" destination="RVy-pm-8cf" id="3V1-QD-Fl3"/>
+                <outlet property="loginTextFieldVerticalSpaceConstraint" destination="ORg-8w-AsO" id="w2e-Gq-gx8"/>
+                <outlet property="logoVerticalSpaceConstraint" destination="Of1-MB-jHZ" id="TI5-lO-C5T"/>
+                <outlet property="passwordTextField" destination="ygf-OJ-W60" id="ADr-D2-bLW"/>
+                <outlet property="passwordTextFieldVerticalSpaceConstraint" destination="zfZ-RI-3EA" id="8wk-qf-KtQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,24 +21,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="g1G-xF-4pK">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="g1G-xF-4pK">
                     <rect key="frame" x="137" y="96" width="47" height="47"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVy-pm-8cf">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVy-pm-8cf">
                     <rect key="frame" x="60" y="167" width="200" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-OJ-W60">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ygf-OJ-W60">
                     <rect key="frame" x="60" y="217" width="200" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbM-2q-zj8">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbM-2q-zj8">
                     <rect key="frame" x="214" y="255" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -40,7 +47,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7f-ok-jGg">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7f-ok-jGg">
                     <rect key="frame" x="60" y="255" width="97" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -51,6 +58,13 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="RVy-pm-8cf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="167" id="ORg-8w-AsO"/>
+                <constraint firstItem="g1G-xF-4pK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="96" id="Of1-MB-jHZ"/>
+                <constraint firstItem="qbM-2q-zj8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="255" id="eMY-aM-SLv"/>
+                <constraint firstItem="p7f-ok-jGg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="255" id="xss-xk-aFQ"/>
+                <constraint firstItem="ygf-OJ-W60" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="217" id="zfZ-RI-3EA"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
