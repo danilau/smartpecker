@@ -953,7 +953,14 @@ static char ja_kvoContext;
 #pragma mark - Public Methods
 
 - (UIBarButtonItem *)leftButtonForCenterPanel {
-    return [[UIBarButtonItem alloc] initWithImage:[[self class] defaultImage] style:UIBarButtonItemStylePlain target:self action:@selector(toggleLeftPanel:)];
+    UIImage *faceImage = [UIImage imageNamed:@"list.png"];
+    UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
+    face.bounds = CGRectMake( 0, 0, faceImage.size.width, faceImage.size.height );
+    [face setImage:faceImage forState:UIControlStateNormal];
+    [face addTarget:self
+             action:@selector(toggleLeftPanel:)
+   forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:face];
 }
 
 - (void)showLeftPanel:(BOOL)animated {

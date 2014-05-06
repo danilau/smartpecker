@@ -7,6 +7,8 @@
 //
 
 #import "SPASubjectsViewController.h"
+#import "SPASubjectsTitleCell.h"
+#import "SPASubjectsCell.h"
 
 @interface SPASubjectsViewController ()
 
@@ -20,7 +22,10 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+    self.tableView.backgroundColor = [UIColor colorWithRed:153/255.0f green:125/255.0f blue:91/255.0f alpha:1];
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:92/255.0f green:77/255.0f blue:68/255.0f alpha:1]];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SPASubjectsTitleCell" bundle:nil] forCellReuseIdentifier:@"SubjectsTitleCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SPASubjectsCell" bundle:nil] forCellReuseIdentifier:@"SubjectsCell"];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -37,26 +42,46 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 10;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *titleCellIdentifier = @"SubjectsTitleCell";
+    static NSString *CellIdentifier = @"SubjectsCell";
     
-    // Configure the cell...
+    if(indexPath.row == 0){
     
-    return cell;
+        SPASubjectsTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:titleCellIdentifier];
+        if (cell == nil) {
+            cell = [[SPASubjectsTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleCellIdentifier];
+        }
+        // Configure the cell...
+        return cell;
+    }else{
+        SPASubjectsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[SPASubjectsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        // Configure the cell...
+        return cell;
+    }
+
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 65.0f;
+    
+}
 
 /*
 // Override to support conditional editing of the table view.
