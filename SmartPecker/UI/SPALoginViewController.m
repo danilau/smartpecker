@@ -7,6 +7,7 @@
 //
 
 #import "SPALoginViewController.h"
+#import "SPAScheduleViewController.h"
 
 @interface SPALoginViewController ()
 
@@ -61,6 +62,9 @@
 }
 
 - (IBAction)touchDownLoginButton:(id)sender {
+    SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
+    spaScheduleViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:spaScheduleViewController animated:YES completion:nil];
 }
 
 @end

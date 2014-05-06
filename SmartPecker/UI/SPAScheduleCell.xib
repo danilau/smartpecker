@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleCell" rowHeight="65" id="KGk-i7-Jjw" customClass="SPAScheduleCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taskback_green" translatesAutoresizingMaskIntoConstraints="NO" id="ZXO-Bb-dcI">
+                        <rect key="frame" x="9" y="51" width="50" height="11"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="2On-N2-jOh"/>
+                            <constraint firstAttribute="height" constant="11" id="gHE-q3-1wu"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Лаба" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6D-Pu-TYX">
+                        <rect key="frame" x="9" y="51" width="50" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="11" id="jfR-H4-LwR"/>
+                            <constraint firstAttribute="width" constant="50" id="yAM-FI-d5I"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="08:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHR-5v-n3P">
+                        <rect key="frame" x="9" y="13" width="50" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="08:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNS-hF-nBP">
+                        <rect key="frame" x="9" y="27" width="50" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Конструкторско-технологическое производство радиоэлектронных средств различного назначения и применения" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="198" translatesAutoresizingMaskIntoConstraints="NO" id="Vxj-ZW-3Vc">
+                        <rect key="frame" x="67" y="0.0" width="198" height="52"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_disable" translatesAutoresizingMaskIntoConstraints="NO" id="wIn-sr-bXq">
+                        <rect key="frame" x="70" y="50" width="11" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="11" id="S5y-b0-XFA"/>
+                            <constraint firstAttribute="height" constant="11" id="yO3-mq-eEV"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="man_disable" translatesAutoresizingMaskIntoConstraints="NO" id="aso-5m-C8l">
+                        <rect key="frame" x="165" y="50" width="7" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="К. 4, А. 213" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3C-tn-FaW">
+                        <rect key="frame" x="84" y="50" width="59" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Добронравов А.И." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ger-B0-Ij4">
+                        <rect key="frame" x="180" y="50" width="96" height="11"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="D6D-Pu-TYX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="7jP-yi-1pX"/>
+                    <constraint firstItem="ZXO-Bb-dcI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="DVg-AK-WVl"/>
+                    <constraint firstItem="wIn-sr-bXq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="70" id="QI7-bf-FW1"/>
+                    <constraint firstAttribute="bottom" secondItem="D6D-Pu-TYX" secondAttribute="bottom" constant="2" id="a6q-en-wkl"/>
+                    <constraint firstAttribute="bottom" secondItem="aso-5m-C8l" secondAttribute="bottom" constant="3" id="eHE-eA-rbM"/>
+                    <constraint firstAttribute="bottom" secondItem="ZXO-Bb-dcI" secondAttribute="bottom" constant="2" id="f4j-U0-f7E"/>
+                    <constraint firstItem="aso-5m-C8l" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="165" id="fE5-vQ-nR4"/>
+                    <constraint firstAttribute="bottom" secondItem="wIn-sr-bXq" secondAttribute="bottom" constant="3" id="v2w-aR-T1o"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="home_disable" width="11" height="10"/>
+        <image name="man_disable" width="7" height="11"/>
+        <image name="taskback_green" width="49" height="11"/>
+    </resources>
+</document>

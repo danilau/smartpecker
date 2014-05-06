@@ -22,6 +22,10 @@
 		62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71CF8191729AD00F4685C /* SPANavigationController.m */; };
 		62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D0019172AA400F4685C /* SPALoginViewController.m */; };
 		62B71D0319172AA400F4685C /* SPALoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D0119172AA400F4685C /* SPALoginViewController.xib */; };
+		62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D141918681E00F4685C /* SPAScheduleViewController.m */; };
+		62B71D17191868F800F4685C /* SPAScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D16191868F800F4685C /* SPAScheduleViewController.xib */; };
+		62B71D1B19186A0100F4685C /* SPAScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D1919186A0100F4685C /* SPAScheduleCell.m */; };
+		62B71D1C19186A0100F4685C /* SPAScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D1A19186A0100F4685C /* SPAScheduleCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,12 @@
 		62B71CFF19172AA400F4685C /* SPALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPALoginViewController.h; sourceTree = "<group>"; };
 		62B71D0019172AA400F4685C /* SPALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPALoginViewController.m; sourceTree = "<group>"; };
 		62B71D0119172AA400F4685C /* SPALoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPALoginViewController.xib; sourceTree = "<group>"; };
+		62B71D131918681E00F4685C /* SPAScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAScheduleViewController.h; sourceTree = "<group>"; };
+		62B71D141918681E00F4685C /* SPAScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAScheduleViewController.m; sourceTree = "<group>"; };
+		62B71D16191868F800F4685C /* SPAScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPAScheduleViewController.xib; sourceTree = "<group>"; };
+		62B71D1819186A0100F4685C /* SPAScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAScheduleCell.h; sourceTree = "<group>"; };
+		62B71D1919186A0100F4685C /* SPAScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAScheduleCell.m; sourceTree = "<group>"; };
+		62B71D1A19186A0100F4685C /* SPAScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPAScheduleCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +169,12 @@
 				62B71CFF19172AA400F4685C /* SPALoginViewController.h */,
 				62B71D0019172AA400F4685C /* SPALoginViewController.m */,
 				62B71D0119172AA400F4685C /* SPALoginViewController.xib */,
+				62B71D131918681E00F4685C /* SPAScheduleViewController.h */,
+				62B71D141918681E00F4685C /* SPAScheduleViewController.m */,
+				62B71D16191868F800F4685C /* SPAScheduleViewController.xib */,
+				62B71D1819186A0100F4685C /* SPAScheduleCell.h */,
+				62B71D1919186A0100F4685C /* SPAScheduleCell.m */,
+				62B71D1A19186A0100F4685C /* SPAScheduleCell.xib */,
 				62B71CF7191729AC00F4685C /* SPANavigationController.h */,
 				62B71CF8191729AD00F4685C /* SPANavigationController.m */,
 			);
@@ -243,6 +259,8 @@
 			files = (
 				62B4E56219148C0C000EA9F1 /* InfoPlist.strings in Resources */,
 				62B71D0319172AA400F4685C /* SPALoginViewController.xib in Resources */,
+				62B71D1C19186A0100F4685C /* SPAScheduleCell.xib in Resources */,
+				62B71D17191868F800F4685C /* SPAScheduleViewController.xib in Resources */,
 				62B4E56A19148C0C000EA9F1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +284,8 @@
 				62B4E56419148C0C000EA9F1 /* main.m in Sources */,
 				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
 				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
+				62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */,
+				62B71D1B19186A0100F4685C /* SPAScheduleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
