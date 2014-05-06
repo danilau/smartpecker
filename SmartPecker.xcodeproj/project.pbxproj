@@ -34,6 +34,10 @@
 		62B71D301918A60700F4685C /* SPASubjectsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D2E1918A60700F4685C /* SPASubjectsTitleCell.xib */; };
 		62B71D341918AB4100F4685C /* SPASubjectsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D321918AB4100F4685C /* SPASubjectsCell.m */; };
 		62B71D351918AB4100F4685C /* SPASubjectsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D331918AB4100F4685C /* SPASubjectsCell.xib */; };
+		62B71D391918B6B000F4685C /* SPASubjectAttributesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D371918B6B000F4685C /* SPASubjectAttributesViewController.m */; };
+		62B71D3A1918B6B000F4685C /* SPASubjectAttributesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D381918B6B000F4685C /* SPASubjectAttributesViewController.xib */; };
+		62B71D3E1918C37600F4685C /* SPASubjectAttributesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D3C1918C37600F4685C /* SPASubjectAttributesCell.m */; };
+		62B71D3F1918C37600F4685C /* SPASubjectAttributesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,12 @@
 		62B71D311918AB4100F4685C /* SPASubjectsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPASubjectsCell.h; sourceTree = "<group>"; };
 		62B71D321918AB4100F4685C /* SPASubjectsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPASubjectsCell.m; sourceTree = "<group>"; };
 		62B71D331918AB4100F4685C /* SPASubjectsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPASubjectsCell.xib; sourceTree = "<group>"; };
+		62B71D361918B6B000F4685C /* SPASubjectAttributesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPASubjectAttributesViewController.h; sourceTree = "<group>"; };
+		62B71D371918B6B000F4685C /* SPASubjectAttributesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPASubjectAttributesViewController.m; sourceTree = "<group>"; };
+		62B71D381918B6B000F4685C /* SPASubjectAttributesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPASubjectAttributesViewController.xib; sourceTree = "<group>"; };
+		62B71D3B1918C37600F4685C /* SPASubjectAttributesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPASubjectAttributesCell.h; sourceTree = "<group>"; };
+		62B71D3C1918C37600F4685C /* SPASubjectAttributesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPASubjectAttributesCell.m; sourceTree = "<group>"; };
+		62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPASubjectAttributesCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +198,12 @@
 		62B71CF61917298500F4685C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				62B71D361918B6B000F4685C /* SPASubjectAttributesViewController.h */,
+				62B71D371918B6B000F4685C /* SPASubjectAttributesViewController.m */,
+				62B71D381918B6B000F4685C /* SPASubjectAttributesViewController.xib */,
+				62B71D3B1918C37600F4685C /* SPASubjectAttributesCell.h */,
+				62B71D3C1918C37600F4685C /* SPASubjectAttributesCell.m */,
+				62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */,
 				62B71D2C1918A60700F4685C /* SPASubjectsTitleCell.h */,
 				62B71D2D1918A60700F4685C /* SPASubjectsTitleCell.m */,
 				62B71D2E1918A60700F4685C /* SPASubjectsTitleCell.xib */,
@@ -303,7 +319,9 @@
 				62B71D0319172AA400F4685C /* SPALoginViewController.xib in Resources */,
 				62B71D1C19186A0100F4685C /* SPAScheduleCell.xib in Resources */,
 				62B71D351918AB4100F4685C /* SPASubjectsCell.xib in Resources */,
+				62B71D3F1918C37600F4685C /* SPASubjectAttributesCell.xib in Resources */,
 				62B71D17191868F800F4685C /* SPAScheduleViewController.xib in Resources */,
+				62B71D3A1918B6B000F4685C /* SPASubjectAttributesViewController.xib in Resources */,
 				62B71D211918860400F4685C /* SPASubjectsViewController.xib in Resources */,
 				62B4E56A19148C0C000EA9F1 /* Images.xcassets in Resources */,
 				62B71D301918A60700F4685C /* SPASubjectsTitleCell.xib in Resources */,
@@ -325,7 +343,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62B71D3E1918C37600F4685C /* SPASubjectAttributesCell.m in Sources */,
 				62B71D2819188A5A00F4685C /* UIViewController+JASidePanel.m in Sources */,
+				62B71D391918B6B000F4685C /* SPASubjectAttributesViewController.m in Sources */,
 				62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */,
 				62B4E56419148C0C000EA9F1 /* main.m in Sources */,
 				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
