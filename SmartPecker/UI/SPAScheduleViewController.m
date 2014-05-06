@@ -31,6 +31,7 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    [self setTitle:@"SmartPecker"];
     [self.tableView registerNib:[UINib nibWithNibName:@"SPAScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;

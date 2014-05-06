@@ -7,7 +7,11 @@
 //
 
 #import "SPAAppDelegate.h"
+#import "JASidePanelController.h"
+#import "SPANavigationController.h"
 #import "SPALoginViewController.h"
+#import "SPAScheduleViewController.h"
+#import "SPASubjectsViewController.h"
 
 @implementation SPAAppDelegate
 
@@ -17,9 +21,25 @@
     // Override point for customization after application launch.
     SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
     
-    self.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
+    self.spaLoginNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
+    
+    self.window.rootViewController = self.spaLoginNavigationController;
+    
+    
+    //After authentication
+    if(NO){
       
-    self.window.rootViewController = self.spaNavigationController;
+    SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
+    [self.spaNavigationController setViewControllers:[NSArray arrayWithObject:spaScheduleViewController]];
+    
+    SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
+    
+    //Init of jaSidePanelController
+    self.jaSidePanelController = [[JASidePanelController alloc] init];
+    self.jaSidePanelController.centerPanel = self.spaNavigationController;
+    self.jaSidePanelController.leftPanel = spaSubjectsViewController;
+    
+    }
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

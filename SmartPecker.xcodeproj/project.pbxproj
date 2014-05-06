@@ -28,6 +28,8 @@
 		62B71D1C19186A0100F4685C /* SPAScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D1A19186A0100F4685C /* SPAScheduleCell.xib */; };
 		62B71D201918860400F4685C /* SPASubjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D1E1918860400F4685C /* SPASubjectsViewController.m */; };
 		62B71D211918860400F4685C /* SPASubjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D1F1918860400F4685C /* SPASubjectsViewController.xib */; };
+		62B71D2719188A5A00F4685C /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D2419188A5A00F4685C /* JASidePanelController.m */; };
+		62B71D2819188A5A00F4685C /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D2619188A5A00F4685C /* UIViewController+JASidePanel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,10 @@
 		62B71D1D1918860400F4685C /* SPASubjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPASubjectsViewController.h; sourceTree = "<group>"; };
 		62B71D1E1918860400F4685C /* SPASubjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPASubjectsViewController.m; sourceTree = "<group>"; };
 		62B71D1F1918860400F4685C /* SPASubjectsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPASubjectsViewController.xib; sourceTree = "<group>"; };
+		62B71D2319188A5A00F4685C /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
+		62B71D2419188A5A00F4685C /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
+		62B71D2519188A5A00F4685C /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
+		62B71D2619188A5A00F4685C /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 		62B4E55D19148C0C000EA9F1 /* SmartPecker */ = {
 			isa = PBXGroup;
 			children = (
+				62B71D2219188A3600F4685C /* JASidePanels */,
 				62B71CF61917298500F4685C /* UI */,
 				62B4E56619148C0C000EA9F1 /* SPAAppDelegate.h */,
 				62B4E56719148C0C000EA9F1 /* SPAAppDelegate.m */,
@@ -187,6 +194,17 @@
 				62B71CF8191729AD00F4685C /* SPANavigationController.m */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		62B71D2219188A3600F4685C /* JASidePanels */ = {
+			isa = PBXGroup;
+			children = (
+				62B71D2319188A5A00F4685C /* JASidePanelController.h */,
+				62B71D2419188A5A00F4685C /* JASidePanelController.m */,
+				62B71D2519188A5A00F4685C /* UIViewController+JASidePanel.h */,
+				62B71D2619188A5A00F4685C /* UIViewController+JASidePanel.m */,
+			);
+			path = JASidePanels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,12 +307,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62B71D2819188A5A00F4685C /* UIViewController+JASidePanel.m in Sources */,
 				62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */,
 				62B4E56419148C0C000EA9F1 /* main.m in Sources */,
 				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
 				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
 				62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */,
 				62B71D201918860400F4685C /* SPASubjectsViewController.m in Sources */,
+				62B71D2719188A5A00F4685C /* JASidePanelController.m in Sources */,
 				62B71D1B19186A0100F4685C /* SPAScheduleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

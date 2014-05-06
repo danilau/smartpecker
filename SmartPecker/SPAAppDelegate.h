@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SPANavigationController.h"
+
+@class JASidePanelController, SPANavigationController;
 
 @interface SPAAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) SPANavigationController *spaLoginNavigationController;
 @property (strong, nonatomic) SPANavigationController *spaNavigationController;
+@property (strong, nonatomic) JASidePanelController *jaSidePanelController;
 
 @end

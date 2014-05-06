@@ -7,7 +7,11 @@
 //
 
 #import "SPALoginViewController.h"
+#import "SPANavigationController.h"
 #import "SPAScheduleViewController.h"
+#import "SPASubjectsViewController.h"
+#import "JASidePanelController.h"
+#import "SPAAppDelegate.h"
 
 @interface SPALoginViewController ()
 
@@ -62,9 +66,21 @@
 }
 
 - (IBAction)touchDownLoginButton:(id)sender {
+    SPAAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
     SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
-    spaScheduleViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:spaScheduleViewController animated:YES completion:nil];
+    
+    appDelegate.jaSidePanelController = [[JASidePanelController alloc] init];
+    appDelegate.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
+    
+    
+    SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
+    
+    appDelegate.jaSidePanelController.centerPanel = appDelegate.spaNavigationController;
+    appDelegate.jaSidePanelController.leftPanel = spaSubjectsViewController;
+    
+    //appDelegate.jaSidePanelController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:appDelegate.jaSidePanelController animated:NO completion:nil];
 }
 
 @end
