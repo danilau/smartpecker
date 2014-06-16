@@ -10,6 +10,7 @@
 #import "SPAScheduleCell.h"
 #import "SPASubjectsViewController.h"
 #import "SPASubjectAttributesViewController.h"
+#import "SPACalendarNavigationView.h"
 
 @interface SPAScheduleViewController ()
 
@@ -36,6 +37,14 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"SPAScheduleCell" bundle:nil] forCellReuseIdentifier:@"ScheduleCell"];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //SPACalendarControl
+    
+    SPACalendarNavigationView* spaCalendarNavigationView = [[SPACalendarNavigationView alloc] initWithController:self];
+    
+    [self.navigationItem setTitleView:spaCalendarNavigationView];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
