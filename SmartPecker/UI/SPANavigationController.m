@@ -28,6 +28,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIView* statusBarBackView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+    statusBarBackView.backgroundColor = [UIColor whiteColor];
+    [self.navigationBar.superview addSubview:statusBarBackView];
+    
+    UIView* statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+    statusBarView.backgroundColor = [UIColor colorWithRed:230/255.0f green:209/255.0f blue:184/255.0f alpha:0.85];
+    [self.view addSubview:statusBarView];
+
 }
 
 - (void)didReceiveMemoryWarning

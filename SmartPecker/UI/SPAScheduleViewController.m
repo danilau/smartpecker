@@ -11,6 +11,7 @@
 #import "SPASubjectsViewController.h"
 #import "SPASubjectAttributesViewController.h"
 #import "SPACalendarNavigationView.h"
+#import "SPAAppDelegate.h"
 
 @interface SPAScheduleViewController ()
 
@@ -31,6 +32,8 @@
 {
     [super viewDidLoad];
     
+    SPAAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     [self setTitle:@"SmartPecker"];
@@ -38,11 +41,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //SPACalendarControl
+    //SPACalendarNavigationView
     
     SPACalendarNavigationView* spaCalendarNavigationView = [[SPACalendarNavigationView alloc] initWithController:self];
+    [spaCalendarNavigationView.leftButton addTarget:appDelegate.jaSidePanelController action:@selector(toggleLeftPanel:) forControlEvents:UIControlEventTouchUpInside];
     
+   
     [self.navigationItem setTitleView:spaCalendarNavigationView];
+
     
     
 }
