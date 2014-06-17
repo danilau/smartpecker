@@ -12,7 +12,23 @@
 
 
 - (void)layoutSubviews {
-
+    [super layoutSubviews];
+    
+    NSArray *classNamesToReposition = @[@"SPACalendarNavigationView"];
+    
+    for (UIView *view in [self subviews]) {
+        
+        if ([classNamesToReposition containsObject:NSStringFromClass([view class])]) {
+            NSLog(@"sdf");
+            CGRect frame = [view frame];
+            
+            frame.origin.x = 0.0;
+            frame.origin.y = 0.0;
+            
+            [view setFrame:frame];
+        }
+    }
+    
 }
 
 @end
