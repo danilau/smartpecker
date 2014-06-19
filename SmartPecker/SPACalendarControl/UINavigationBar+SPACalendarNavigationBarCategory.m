@@ -14,41 +14,72 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    
-    
-    NSArray *classNamesToReposition = @[@"SPACalendarNavigationView"];
+    BOOL opened = NO;
     
     for (UIView *view in [self subviews]) {
         
-        //NSLog
+        //Subviews processing
         
-        if ([classNamesToReposition containsObject:NSStringFromClass([view class])]) {
+        if ([[view.class description] isEqualToString:@"SPACalendarNavigationView"]) {
             
+            opened = ((SPACalendarNavigationView*)view).opened;
             //Check if visible viewController is equal to main controller
             NSString* calendarViewControllerName = [((SPACalendarNavigationView*)view).controller.class description];
             NSString* currentViewControllerName = [((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.class description];
             
             if(![calendarViewControllerName isEqualToString:currentViewControllerName]){
-                ((SPACalendarNavigationView*)view).opened = NO;
+                opened = NO;
+        
+                [((UITableView*)((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.view) setContentOffset:CGPointMake(0.0, -64.0)];
             }
-            
             //Check if CalendarNavigationView is opened
             
             CGRect newFrame;
             
-            if(((SPACalendarNavigationView*)view).opened){
+            if(opened){
                 
                 newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, ((SPACalendarNavigationView*)view).calendarHeight);
-
+                
             }else{
                 newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 44.0);
                 //SPACalendarNavigationView coordinates correction
                 CGRect originalCalendarFrame = CGRectMake(0.0,0.0,320.0,44.0);
                 view.frame = originalCalendarFrame;
+                if([calendarViewControllerName isEqualToString:currentViewControllerName]){
+                    CGRect anotherControllerFrame = ((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.view.frame;
+                    
+                    
+                    ((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.view.frame = anotherControllerFrame;
+                }
+                
+                
+            }
+            
+            ((SPACalendarNavigationView*)view).opened = opened;
+            
+            //MonthContainerView processing
+            
+            for (UIView *view1 in [view subviews]) {
+                
+                //MonthContainerView
+                if([[view1.class description] isEqualToString:@"SPACalendarMonthContainerView"]){
+                    if(opened){
+                        CGRect originalMonthContainerFrame = CGRectMake(0.0,44.0,320.0,44.0);
+                        view1.frame = originalMonthContainerFrame;
+                        
+                    }
+                    view1.hidden = !opened;
+                    
+                }
             }
             
             [self setFrame:newFrame];
+            
+
         }
+    }
+    
+    for (UIView *view in [self subviews]) {
         
         if([[view.class description] isEqualToString:@"_UINavigationBarBackIndicatorView"]){
             //BackIndicator Correction
@@ -56,6 +87,7 @@
             view.frame = backIndicatorFrame;
         }
     }
+    
     
 }
 
