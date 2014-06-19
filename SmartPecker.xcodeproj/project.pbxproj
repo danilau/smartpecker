@@ -11,6 +11,7 @@
 		62699F1F194E7EF900E2F1FA /* SPACalendarNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F1E194E7EF900E2F1FA /* SPACalendarNavigationView.m */; };
 		62699F22194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F21194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m */; };
 		62699F2819528E9200E2F1FA /* SPACalendarMonthContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F2719528E9200E2F1FA /* SPACalendarMonthContainerView.m */; };
+		62699F301953805D00E2F1FA /* SPACalendarMonthLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F2F1953805D00E2F1FA /* SPACalendarMonthLabel.m */; };
 		62B4E55819148C0C000EA9F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55719148C0C000EA9F1 /* Foundation.framework */; };
 		62B4E55A19148C0C000EA9F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55919148C0C000EA9F1 /* CoreGraphics.framework */; };
 		62B4E55C19148C0C000EA9F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62B4E55B19148C0C000EA9F1 /* UIKit.framework */; };
@@ -63,6 +64,8 @@
 		62699F21194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+SPACalendarNavigationBarCategory.m"; sourceTree = "<group>"; };
 		62699F2619528E9200E2F1FA /* SPACalendarMonthContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarMonthContainerView.h; sourceTree = "<group>"; };
 		62699F2719528E9200E2F1FA /* SPACalendarMonthContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarMonthContainerView.m; sourceTree = "<group>"; };
+		62699F2E1953805D00E2F1FA /* SPACalendarMonthLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarMonthLabel.h; sourceTree = "<group>"; };
+		62699F2F1953805D00E2F1FA /* SPACalendarMonthLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarMonthLabel.m; sourceTree = "<group>"; };
 		62B4E55419148C0C000EA9F1 /* SmartPecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B4E55719148C0C000EA9F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		62B4E55919148C0C000EA9F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +145,8 @@
 				62699F2719528E9200E2F1FA /* SPACalendarMonthContainerView.m */,
 				62699F1D194E7EF900E2F1FA /* SPACalendarNavigationView.h */,
 				62699F1E194E7EF900E2F1FA /* SPACalendarNavigationView.m */,
+				62699F2E1953805D00E2F1FA /* SPACalendarMonthLabel.h */,
+				62699F2F1953805D00E2F1FA /* SPACalendarMonthLabel.m */,
 				62699F20194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.h */,
 				62699F21194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m */,
 				62699F1A194E742100E2F1FA /* SPACalendarControl.h */,
@@ -373,6 +378,7 @@
 			files = (
 				62B71D3E1918C37600F4685C /* SPASubjectAttributesCell.m in Sources */,
 				62B71D2819188A5A00F4685C /* UIViewController+JASidePanel.m in Sources */,
+				62699F301953805D00E2F1FA /* SPACalendarMonthLabel.m in Sources */,
 				62699F1C194E742100E2F1FA /* SPACalendarControl.m in Sources */,
 				62B71D391918B6B000F4685C /* SPASubjectAttributesViewController.m in Sources */,
 				62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */,
