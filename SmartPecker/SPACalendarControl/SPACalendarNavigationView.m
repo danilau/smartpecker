@@ -8,6 +8,7 @@
 
 #import "SPACalendarNavigationView.h"
 #import "SPACalendarControl.h"
+#import "UINavigationBar+SPACalendarNavigationBarCategory.h"
 
 @implementation SPACalendarNavigationView
 
@@ -16,6 +17,8 @@
     if (self) {
         // Initialization code
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        self.opened = NO;
+        self.calendarHeight = 200.0;
         //Controller init
         self.controller = controller;
         self.controller.navigationItem.leftBarButtonItem = nil;
@@ -60,15 +63,12 @@
     return self;
 }
 
+
 -(void)rightButtonClicked:(UIButton*) sender
 {
-    CGRect newFrame =  self.controller.navigationController.navigationBar.frame;
-    newFrame.size.height = 200.0;
-    newFrame.origin.y = 20.0;
     
-    
-    self.controller.navigationController.navigationBar.frame = newFrame;
-    
+    self.opened = !self.opened;
+    [self.controller.navigationController.navigationBar setNeedsLayout];
     
     //self.controller.view.frame = CGRectMake(0.0, 80.0, 320.0, 568.0);
     

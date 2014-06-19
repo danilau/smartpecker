@@ -13,6 +13,9 @@
 @property (nonatomic,weak) UIViewController* controller;
 @property (nonatomic,strong) UIButton* rightButton;
 @property (nonatomic,strong) UIButton* leftButton;
+@property (nonatomic) BOOL opened;
+@property (nonatomic) CGFloat calendarHeight;
+
 
 - (id)initWithController:(UIViewController*) controller;
 

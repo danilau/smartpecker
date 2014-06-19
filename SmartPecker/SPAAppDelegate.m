@@ -23,7 +23,7 @@
     SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
     
     self.spaLoginNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
-    
+      
     self.window.rootViewController = self.spaLoginNavigationController;
     
     
