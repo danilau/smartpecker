@@ -29,8 +29,12 @@
             
             if(![calendarViewControllerName isEqualToString:currentViewControllerName]){
                 opened = NO;
+                
+                if([[((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.view.class description] isEqualToString:@"UITableView"]){
+                    [((UITableView*)((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.view) setContentOffset:CGPointMake(0.0, -64.0)];
+                }
         
-                [((UITableView*)((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.view) setContentOffset:CGPointMake(0.0, -64.0)];
+                
             }
             //Check if CalendarNavigationView is opened
             
