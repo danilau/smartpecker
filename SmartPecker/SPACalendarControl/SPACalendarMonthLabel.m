@@ -8,6 +8,15 @@
 
 #import "SPACalendarMonthLabel.h"
 
+@interface SPACalendarMonthLabel (){
+    
+    NSDate* _todayDate;
+    NSDate* _activeDate;
+    NSCalendar* _calendar;
+}
+
+@end
+
 @implementation SPACalendarMonthLabel
 
 - (id)initWithFrame:(CGRect)frame
@@ -15,12 +24,16 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        NSDate *date = [NSDate date];
-        NSLog(@"%@",date);
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:date];
+        self.textColor = [UIColor whiteColor];
+        _todayDate = [NSDate date];
+        _activeDate = [NSDate date];
+        NSLog(@"%@",_todayDate);
+        _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *components = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:_todayDate];
         
-        self.text = [[self monthNameFromId:components.month] stringByAppendingString:[NSString stringWithFormat:@" %i",components.year]];
+        
+        
+        self.text = [[self monthNameFromId:components.month] stringByAppendingString:[NSString stringWithFormat:@" %li",(long)components.year]];
     }
     return self;
 }
@@ -67,6 +80,31 @@
             return nil;
             break;
     }
+}
+
+- (NSDate*) setNextMonth{
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    [offsetComponents setMonth:1];
+    _activeDate = [_calendar dateByAddingComponents:offsetComponents toDate:_activeDate options:0];
+    
+    NSDateComponents *components = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:_activeDate];
+    
+    self.text = [[self monthNameFromId:components.month] stringByAppendingString:[NSString stringWithFormat:@" %li",(long)components.year]];
+ 
+    return _activeDate;
+}
+
+- (NSDate*) setPrevMonth{
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    [offsetComponents setMonth:-1];
+    _activeDate = [_calendar dateByAddingComponents:offsetComponents toDate:_activeDate options:0];
+    
+    NSDateComponents *components = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:_activeDate];
+    
+    self.text = [[self monthNameFromId:components.month] stringByAppendingString:[NSString stringWithFormat:@" %li",(long)components.year]];
+    
+    return _activeDate;
+
 }
 
 /*

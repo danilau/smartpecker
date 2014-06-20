@@ -9,7 +9,6 @@
 #import "SPACalendarNavigationView.h"
 #import "SPACalendarControl.h"
 #import "SPACalendarMonthContainerView.h"
-#import "SPACalendarMonthLabel.h"
 #import "UINavigationBar+SPACalendarNavigationBarCategory.h"
 
 @implementation SPACalendarNavigationView
@@ -46,15 +45,8 @@
         
         //MonthContainer
         SPACalendarMonthContainerView* monthContainerView = [[SPACalendarMonthContainerView alloc] initWithFrame:CGRectMake(44.0, 0.0, 320.0, 44.0)];
-        monthContainerView.backgroundColor = [UIColor redColor];
         monthContainerView.hidden = YES;
-        //MonthLabel
-        SPACalendarMonthLabel* monthLabel = [[SPACalendarMonthLabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
-        [monthLabel setTextAlignment:NSTextAlignmentCenter];
-   
-        [monthContainerView addSubview:monthLabel];
-
-        
+              
         
         SPACalendarControl* spaCalendarControl = [[SPACalendarControl alloc] initWithFrame:CGRectMake(-20.0, 0.0, 200.0, 20.0)];
         spaCalendarControl.backgroundColor = [UIColor greenColor];

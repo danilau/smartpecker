@@ -10,4 +10,7 @@
 
 @interface SPACalendarMonthLabel : UILabel
 
+- (NSDate*) setNextMonth;
+- (NSDate*) setPrevMonth;
+
 @end
