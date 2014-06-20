@@ -19,7 +19,8 @@
         // Initialization code
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         self.opened = NO;
-        self.calendarHeight = 200.0;
+        //Calculate height (depends on the number of days in a month)
+        self.calendarHeight = 286.0;
         //Controller init
         self.controller = controller;
         self.controller.navigationItem.leftBarButtonItem = nil;
@@ -44,7 +45,7 @@
         [self.rightButton addTarget:self action:@selector(rightButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         //MonthContainer
-        SPACalendarMonthContainerView* monthContainerView = [[SPACalendarMonthContainerView alloc] initWithFrame:CGRectMake(44.0, 0.0, 320.0, 44.0)];
+        SPACalendarMonthContainerView* monthContainerView = [[SPACalendarMonthContainerView alloc] initWithFrame:CGRectMake(44.0, 0.0, 320.0, self.calendarHeight)];
         monthContainerView.hidden = YES;
               
         

@@ -10,6 +10,9 @@
 
 @interface SPACalendarMonthLabel : UILabel
 
+@property (nonatomic) NSInteger activeMonth;
+@property (nonatomic) NSInteger activeYear;
+
 - (NSDate*) setNextMonth;
 - (NSDate*) setPrevMonth;
 

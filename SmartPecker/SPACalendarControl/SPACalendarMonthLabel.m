@@ -10,7 +10,6 @@
 
 @interface SPACalendarMonthLabel (){
     
-    NSDate* _todayDate;
     NSDate* _activeDate;
     NSCalendar* _calendar;
 }
@@ -25,13 +24,12 @@
     if (self) {
         // Initialization code
         self.textColor = [UIColor whiteColor];
-        _todayDate = [NSDate date];
         _activeDate = [NSDate date];
-        NSLog(@"%@",_todayDate);
         _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDateComponents *components = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:_todayDate];
+        NSDateComponents *components = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:_activeDate];
         
-        
+        self.activeMonth = components.month;
+        self.activeYear = components.year;
         
         self.text = [[self monthNameFromId:components.month] stringByAppendingString:[NSString stringWithFormat:@" %li",(long)components.year]];
     }
@@ -90,6 +88,9 @@
     NSDateComponents *components = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:_activeDate];
     
     self.text = [[self monthNameFromId:components.month] stringByAppendingString:[NSString stringWithFormat:@" %li",(long)components.year]];
+    
+    self.activeMonth = components.month;
+    self.activeYear = components.year;
  
     return _activeDate;
 }
@@ -102,6 +103,9 @@
     NSDateComponents *components = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:_activeDate];
     
     self.text = [[self monthNameFromId:components.month] stringByAppendingString:[NSString stringWithFormat:@" %li",(long)components.year]];
+    
+    self.activeMonth = components.month;
+    self.activeYear = components.year;
     
     return _activeDate;
 

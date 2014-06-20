@@ -8,9 +8,12 @@
 
 #import "SPACalendarMonthContainerView.h"
 #import "SPACalendarMonthLabel.h"
+#import "SPACalendarDayButton.h"
 
 @interface SPACalendarMonthContainerView (){
     SPACalendarMonthLabel* _monthLabel;
+    NSMutableArray* _dayButtons;
+    NSCalendar* _calendar;
 }
 
 @end
@@ -22,6 +25,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         //Month Left Button
         UIImage* monthLeftButtonImage = [UIImage imageNamed:@"calendar_monthleft.png"];
         UIButton* monthLeftButton = [[UIButton alloc] initWithFrame:CGRectMake(8.0, 0.0, 44.0, 44.0)];
@@ -47,8 +51,22 @@
             [label setTextAlignment:NSTextAlignmentCenter];
             [self addSubview:label];
         }
+        //Monthday strap
+        _dayButtons = [[NSMutableArray alloc] init];
+        for(int i = 1; i <= 5; i++){
+            for( int j = 1; j <= 7; j++){
+                SPACalendarDayButton* button = [[SPACalendarDayButton alloc] initWithFrame:CGRectMake(6.0+(j-1)*44.0, 66.0+(i-1)*44.0, 44.0, 44.0)];
+                button.indexContainer = (i-1)*7 + j;
+                [button setTitle:@"" forState:UIControlStateNormal];
+                [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
+                button.titleLabel.font = [button.titleLabel.font fontWithSize:15.0];
+                [button addTarget:self action:@selector(dayButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+                [_dayButtons addObject:button];
+                [self addSubview:button];
+            }
+        }
         
-        
+        [self refreshDayButtonsByMonth:_monthLabel.activeMonth AndYear:_monthLabel.activeYear];
 
     }
     return self;
@@ -56,10 +74,16 @@
 
 - (void) leftButtonClicked:(UIButton*) sender{
     [_monthLabel setPrevMonth];
+    [self refreshDayButtonsByMonth:_monthLabel.activeMonth AndYear:_monthLabel.activeYear];
 }
 
 - (void) rightButtonClicked:(UIButton*) sender{
     [_monthLabel setNextMonth];
+    [self refreshDayButtonsByMonth:_monthLabel.activeMonth AndYear:_monthLabel.activeYear];
+}
+
+-(void) dayButtonClicked:(SPACalendarDayButton*) sender{
+    NSLog(@"dfgdfg %i",sender.indexContainer);
 }
 
 - (NSString*) dayNameFromId:(NSInteger)identifier{
@@ -89,6 +113,45 @@
             return nil;
             break;
     }
+}
+
+- (void) refreshDayButtonsByMonth:(NSInteger) month AndYear:(NSInteger) year{
+    
+    NSDateComponents* actualComponents = [[NSDateComponents alloc] init];
+    [actualComponents setDay:1];
+    [actualComponents setMonth:month];
+    [actualComponents setYear:year];
+    
+    NSDate* actualDate = [_calendar dateFromComponents:actualComponents];
+    NSDateComponents* processedComponents = [_calendar components:NSWeekdayCalendarUnit fromDate:actualDate];
+    
+    NSInteger weekday = [processedComponents weekday];
+    
+    NSRange days = [_calendar rangeOfUnit:NSDayCalendarUnit
+                           inUnit:NSMonthCalendarUnit
+                          forDate:actualDate];
+    NSInteger numberOfDays = days.length;
+    
+    NSLog(@"%li",(long)numberOfDays);
+    
+    NSInteger dayIndex = 1;
+    NSInteger indexContainerStart = weekday;
+    NSInteger indexContainerFinish = weekday + numberOfDays-1;
+    
+    for(SPACalendarDayButton* button in _dayButtons){
+        
+        if(dayIndex >= indexContainerStart && dayIndex <= indexContainerFinish){
+            [button setTitle:[NSString stringWithFormat:@"%li",(dayIndex-weekday+1)] forState:UIControlStateNormal];
+        }else{
+            [button setTitle:@"" forState:UIControlStateNormal];
+        }
+        dayIndex++;
+            
+    }
+}
+
+- (int) weekDayToBelarusianSystem:(int)day{
+    return day == 1 ? 7 : day-1;
 }
 
 /*

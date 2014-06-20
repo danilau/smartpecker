@@ -43,6 +43,7 @@
 		62B71D3A1918B6B000F4685C /* SPASubjectAttributesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D381918B6B000F4685C /* SPASubjectAttributesViewController.xib */; };
 		62B71D3E1918C37600F4685C /* SPASubjectAttributesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D3C1918C37600F4685C /* SPASubjectAttributesCell.m */; };
 		62B71D3F1918C37600F4685C /* SPASubjectAttributesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */; };
+		62BAA5891953C6D500EE4B95 /* SPACalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BAA5881953C6D500EE4B95 /* SPACalendarDayButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,8 @@
 		62B71D3B1918C37600F4685C /* SPASubjectAttributesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPASubjectAttributesCell.h; sourceTree = "<group>"; };
 		62B71D3C1918C37600F4685C /* SPASubjectAttributesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPASubjectAttributesCell.m; sourceTree = "<group>"; };
 		62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPASubjectAttributesCell.xib; sourceTree = "<group>"; };
+		62BAA5871953C6D500EE4B95 /* SPACalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarDayButton.h; sourceTree = "<group>"; };
+		62BAA5881953C6D500EE4B95 /* SPACalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarDayButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,8 @@
 				62699F2719528E9200E2F1FA /* SPACalendarMonthContainerView.m */,
 				62699F1D194E7EF900E2F1FA /* SPACalendarNavigationView.h */,
 				62699F1E194E7EF900E2F1FA /* SPACalendarNavigationView.m */,
+				62BAA5871953C6D500EE4B95 /* SPACalendarDayButton.h */,
+				62BAA5881953C6D500EE4B95 /* SPACalendarDayButton.m */,
 				62699F2E1953805D00E2F1FA /* SPACalendarMonthLabel.h */,
 				62699F2F1953805D00E2F1FA /* SPACalendarMonthLabel.m */,
 				62699F20194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.h */,
@@ -387,6 +392,7 @@
 				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
 				62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */,
 				62B71D341918AB4100F4685C /* SPASubjectsCell.m in Sources */,
+				62BAA5891953C6D500EE4B95 /* SPACalendarDayButton.m in Sources */,
 				62B71D2F1918A60700F4685C /* SPASubjectsTitleCell.m in Sources */,
 				62699F1F194E7EF900E2F1FA /* SPACalendarNavigationView.m in Sources */,
 				62699F22194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m in Sources */,

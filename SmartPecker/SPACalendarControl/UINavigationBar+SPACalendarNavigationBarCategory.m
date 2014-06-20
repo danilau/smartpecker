@@ -42,7 +42,7 @@
             
             if(opened){
                 
-                newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, ((SPACalendarNavigationView*)view).calendarHeight);
+                newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, ((SPACalendarNavigationView*)view).calendarHeight+44.0);
                 
             }else{
                 newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 44.0);
@@ -68,7 +68,7 @@
                 //MonthContainerView
                 if([[view1.class description] isEqualToString:@"SPACalendarMonthContainerView"]){
                     if(opened){
-                        CGRect originalMonthContainerFrame = CGRectMake(0.0,44.0,320.0,44.0);
+                        CGRect originalMonthContainerFrame = CGRectMake(0.0,44.0,320.0,((SPACalendarNavigationView*)view).calendarHeight);
                         view1.frame = originalMonthContainerFrame;
                         
                     }
