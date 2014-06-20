@@ -21,7 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     //NSURLSession test
-    NSURLSessionConfiguration* sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    /*NSURLSessionConfiguration* sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     sessionConfiguration.allowsCellularAccess = NO;
     sessionConfiguration.timeoutIntervalForRequest = 30.0;
@@ -71,7 +71,7 @@
         
     }];
     
-    [hashCodeTask resume];
+    [hashCodeTask resume];*/
     
    
     

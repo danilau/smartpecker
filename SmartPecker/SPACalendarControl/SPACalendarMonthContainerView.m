@@ -125,25 +125,46 @@
     NSDate* actualDate = [_calendar dateFromComponents:actualComponents];
     NSDateComponents* processedComponents = [_calendar components:NSWeekdayCalendarUnit fromDate:actualDate];
     
-    NSInteger weekday = [processedComponents weekday];
+    NSInteger weekday = [self weekDayToBelarusianSystem:[processedComponents weekday]];
+    NSLog(@"%li",(long)weekday);
     
     NSRange days = [_calendar rangeOfUnit:NSDayCalendarUnit
                            inUnit:NSMonthCalendarUnit
                           forDate:actualDate];
     NSInteger numberOfDays = days.length;
     
-    NSLog(@"%li",(long)numberOfDays);
+    //NSLog(@"%li",(long)numberOfDays);
     
     NSInteger dayIndex = 1;
     NSInteger indexContainerStart = weekday;
     NSInteger indexContainerFinish = weekday + numberOfDays-1;
     
+    //Previous month calculation
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    [offsetComponents setMonth:-1];
+    NSDate* previousMonthDate = [_calendar dateByAddingComponents:offsetComponents toDate:actualDate options:0];
+    
+    NSRange previousMonthDays = [_calendar rangeOfUnit:NSDayCalendarUnit
+                                   inUnit:NSMonthCalendarUnit
+                                  forDate:previousMonthDate];
+    
+    NSInteger previousMonthNumberOfDays = previousMonthDays.length;
+    
+    NSLog(@"%li",(long)previousMonthNumberOfDays);
+    
     for(SPACalendarDayButton* button in _dayButtons){
         
-        if(dayIndex >= indexContainerStart && dayIndex <= indexContainerFinish){
-            [button setTitle:[NSString stringWithFormat:@"%li",(dayIndex-weekday+1)] forState:UIControlStateNormal];
+        if(button.indexContainer >= indexContainerStart && button.indexContainer <= indexContainerFinish){
+            [button setTitle:[NSString stringWithFormat:@"%i",(button.indexContainer-weekday+1)] forState:UIControlStateNormal];
+            button.titleLabel.textColor = [UIColor whiteColor];
         }else{
-            [button setTitle:@"" forState:UIControlStateNormal];
+            if (dayIndex < indexContainerStart) {
+                [button setTitle:[NSString stringWithFormat:@"%i",(previousMonthNumberOfDays - weekday + button.indexContainer+1)] forState:UIControlStateNormal];
+                button.titleLabel.textColor = [UIColor colorWithRed:244.0/255.0 green:233.0/255.0 blue:211.0/255.0 alpha:1.0];
+            }else{
+                [button setTitle:[NSString stringWithFormat:@"%i",(button.indexContainer-weekday-numberOfDays+1)] forState:UIControlStateNormal];
+                button.titleLabel.textColor = [UIColor colorWithRed:244.0/255.0 green:233.0/255.0 blue:211.0/255.0 alpha:1.0];
+            }
         }
         dayIndex++;
             

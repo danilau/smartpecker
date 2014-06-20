@@ -10,7 +10,7 @@
 
 @interface SPACalendarDayButton : UIButton
 
-@property (nonatomic) int indexContainer;
-@property (nonatomic) int indexDay;
+@property (nonatomic) NSInteger indexContainer;
+@property (nonatomic) NSInteger indexDay;
 
 @end
