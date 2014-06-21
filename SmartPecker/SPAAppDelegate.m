@@ -12,70 +12,14 @@
 #import "SPALoginViewController.h"
 #import "SPAScheduleViewController.h"
 #import "SPASubjectsViewController.h"
+#import "SPANetworkCoordinator.h"
 
 @implementation SPAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    //NSURLSession test
-    /*NSURLSessionConfiguration* sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    sessionConfiguration.allowsCellularAccess = NO;
-    sessionConfiguration.timeoutIntervalForRequest = 30.0;
-    sessionConfiguration.timeoutIntervalForResource = 60.0;
-    sessionConfiguration.HTTPMaximumConnectionsPerHost = 1;
-    
-    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:nil delegateQueue:nil];
-    NSURL* url = [NSURL URLWithString:@"http://spectest.usbelar.by/user"];
-    
-    NSMutableURLRequest* formHashRequest = [NSMutableURLRequest requestWithURL:url];
-    
-    NSURLSessionDataTask* hashCodeTask = [session dataTaskWithRequest:formHashRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
-        
-        NSString *formBuildId;
-        NSString *name = @"admin";
-        NSString *pass = @"123";
-        NSString *formId = @"user_login";
-        NSString *op = @"Log in";
-        
-        
-        NSString* dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        //NSLog(@"Data: %@",dataString);
-        if([dataString rangeOfString:@"value=\"form-"].location == NSNotFound){
-            //Error
-        }else{
-            NSInteger formHashCodeStartPosition = [dataString rangeOfString:@"value=\"form-"].location+7;
-            NSInteger formHashCodeLength = 48;
-            NSRange formHashRange = NSMakeRange(formHashCodeStartPosition, formHashCodeLength);
-            formBuildId = [dataString substringWithRange:formHashRange];
-        }
-        
-        NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowedInMemoryOnly timeoutInterval:30.0];
-        [urlRequest setHTTPMethod:@"POST"];
-        
-        NSString* postString = [NSString stringWithFormat:@"name=%@&pass=%@&form_build_id=%@&form_id=%@&op=%@",name,pass,formBuildId,formId,op];
-        NSLog(@"sdf %@",postString);
-        
-        [urlRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        
-        NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
-            NSString* stringData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"sdf %@",stringData);
-        }];
-        
-        [dataTask resume];
-        
-    }];
-    
-    [hashCodeTask resume];*/
-    
-   
-    
-    
     
     SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
     
@@ -129,6 +73,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[SPANetworkCoordinator sharedNetworkCoordinator] logOut];
 }
 
 @end

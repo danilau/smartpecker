@@ -11,9 +11,10 @@
 
 @implementation UINavigationBar (SPACalendarNavigationBarCategory)
 
+
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
     BOOL opened = NO;
     
     for (UIView *view in [self subviews]) {
@@ -44,9 +45,11 @@
                 
                 newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, ((SPACalendarNavigationView*)view).calendarHeight+44.0);
                 
+                  
                 //MainController UITableView offset
                 
-                CGRect tableFrame = CGRectMake(0.0,0.0 , 320.0, 568.0+((SPACalendarNavigationView*)view).calendarHeight);
+                
+                CGRect tableFrame = CGRectMake(0.0,0.0 , 320.0, 568.0);
                 [((UITableView*)((SPACalendarNavigationView*)view).controller.view) setFrame:tableFrame];
                 for (UIView *tableSubview in [((UITableView*)((SPACalendarNavigationView*)view).controller.view) subviews]) {
                     if ([[tableSubview.class description] isEqualToString:@"UITableViewWrapperView"]) {
@@ -54,6 +57,8 @@
                         [tableSubview setFrame:tableSubviewFrame];
                     }
                 }
+                
+                
                 
                 
             }else{
@@ -69,6 +74,7 @@
                 }
                 
                 //MainController UITableView offset
+            
                 
                 CGRect tableFrame = CGRectMake(0.0,0.0 , 320.0, 568.0);
                 [((UITableView*)((SPACalendarNavigationView*)view).controller.view) setFrame:tableFrame];

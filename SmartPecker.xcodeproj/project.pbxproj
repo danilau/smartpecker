@@ -44,6 +44,7 @@
 		62B71D3E1918C37600F4685C /* SPASubjectAttributesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B71D3C1918C37600F4685C /* SPASubjectAttributesCell.m */; };
 		62B71D3F1918C37600F4685C /* SPASubjectAttributesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */; };
 		62BAA5891953C6D500EE4B95 /* SPACalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BAA5881953C6D500EE4B95 /* SPACalendarDayButton.m */; };
+		62C75577195534670030A90A /* SPANetworkCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C75576195534670030A90A /* SPANetworkCoordinator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,9 @@
 		62BAA5871953C6D500EE4B95 /* SPACalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarDayButton.h; sourceTree = "<group>"; };
 		62BAA5881953C6D500EE4B95 /* SPACalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarDayButton.m; sourceTree = "<group>"; };
 		62C75573195528770030A90A /* SPACalendarMonthContainerViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPACalendarMonthContainerViewDelegate.h; sourceTree = "<group>"; };
+		62C75575195534670030A90A /* SPANetworkCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPANetworkCoordinator.h; sourceTree = "<group>"; };
+		62C75576195534670030A90A /* SPANetworkCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPANetworkCoordinator.m; sourceTree = "<group>"; };
+		62C7557819556B9B0030A90A /* SPANetworkCoordinatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPANetworkCoordinatorDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 		62B4E55D19148C0C000EA9F1 /* SmartPecker */ = {
 			isa = PBXGroup;
 			children = (
+				62C75574195534270030A90A /* Model */,
 				62699F19194E73ED00E2F1FA /* SPACalendarControl */,
 				62B71D2219188A3600F4685C /* JASidePanels */,
 				62B71CF61917298500F4685C /* UI */,
@@ -277,6 +282,16 @@
 				62B71D2619188A5A00F4685C /* UIViewController+JASidePanel.m */,
 			);
 			path = JASidePanels;
+			sourceTree = "<group>";
+		};
+		62C75574195534270030A90A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62C7557819556B9B0030A90A /* SPANetworkCoordinatorDelegate.h */,
+				62C75575195534670030A90A /* SPANetworkCoordinator.h */,
+				62C75576195534670030A90A /* SPANetworkCoordinator.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +406,7 @@
 				62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */,
 				62B4E56419148C0C000EA9F1 /* main.m in Sources */,
 				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
+				62C75577195534670030A90A /* SPANetworkCoordinator.m in Sources */,
 				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
 				62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */,
 				62B71D341918AB4100F4685C /* SPASubjectsCell.m in Sources */,

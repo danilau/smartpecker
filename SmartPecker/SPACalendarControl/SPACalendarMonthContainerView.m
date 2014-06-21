@@ -160,7 +160,6 @@
     NSDateComponents* processedComponents = [_calendar components:NSWeekdayCalendarUnit fromDate:actualDate];
     
     NSInteger weekday = [self weekDayToBelarusianSystem:[processedComponents weekday]];
-    NSLog(@"%li",(long)weekday);
     
     NSRange days = [_calendar rangeOfUnit:NSDayCalendarUnit
                            inUnit:NSMonthCalendarUnit

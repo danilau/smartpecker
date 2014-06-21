@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPANetworkCoordinatorDelegate.h"
 
-@interface SPALoginViewController : UIViewController
+@interface SPALoginViewController : UIViewController <SPANetworkCoordinatorDelegate>
 
 @end

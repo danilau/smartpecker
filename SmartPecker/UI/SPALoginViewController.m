@@ -11,13 +11,17 @@
 #import "SPAScheduleViewController.h"
 #import "SPASubjectsViewController.h"
 #import "JASidePanelController.h"
+#import "SPANetworkCoordinator.h"
+#import "SPANetworkCoordinatorDelegate.h"
 #import "SPAAppDelegate.h"
 
-@interface SPALoginViewController ()
+@interface SPALoginViewController (){
+    UIActivityIndicatorView *_indicator;
+}
 
 @property (strong, nonatomic) IBOutlet UITextField *loginTextField;
-
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UIImageView *loginImageView;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *logoVerticalSpaceConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *loginTextFieldVerticalSpaceConstraint;
@@ -66,21 +70,49 @@
 }
 
 - (IBAction)touchDownLoginButton:(id)sender {
-    SPAAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-    SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
+    SPANetworkCoordinator* coord = [SPANetworkCoordinator sharedNetworkCoordinator];
+    coord.delegate = self;
+    [coord makeAuthenticationWithName:self.loginTextField.text  AndPass:self.passwordTextField.text];
+    if(_indicator == nil){
+        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _indicator.frame = CGRectMake(0.0,0.0,47.0,47.0);
+        NSLog(@"%f",self.loginImageView.frame.origin.x);
+        _indicator.center = self.loginImageView.center;
+        [self.view addSubview:_indicator];
+    }
+    self.loginImageView.hidden = YES;
     
-    appDelegate.jaSidePanelController = [[JASidePanelController alloc] init];
-    appDelegate.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
+    [_indicator startAnimating];
     
-    
-    SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
-    
-    appDelegate.jaSidePanelController.centerPanel = appDelegate.spaNavigationController;
-    appDelegate.jaSidePanelController.leftPanel = spaSubjectsViewController;
-    
-    //appDelegate.jaSidePanelController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:appDelegate.jaSidePanelController animated:NO completion:nil];
+}
+
+#pragma mark - SPANetworkCoordinatorDelegate
+
+- (void) didMakeAuthenticationAttemptWithResult:(BOOL) authenticated AndData:(NSData *)data{
+    [_indicator stopAnimating];
+    if(authenticated){
+        
+        
+        SPAAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
+        
+        appDelegate.jaSidePanelController = [[JASidePanelController alloc] init];
+        appDelegate.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
+        
+        
+        SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
+        
+        appDelegate.jaSidePanelController.centerPanel = appDelegate.spaNavigationController;
+        appDelegate.jaSidePanelController.leftPanel = spaSubjectsViewController;
+        
+        //appDelegate.jaSidePanelController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:appDelegate.jaSidePanelController animated:NO completion:nil];
+        
+    }else{
+        self.loginImageView.hidden = NO;
+    }
 }
 
 @end

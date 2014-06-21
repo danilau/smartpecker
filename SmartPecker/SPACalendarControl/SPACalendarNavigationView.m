@@ -80,9 +80,12 @@
 {
     
     self.opened = !self.opened;
+    
+
+    
     [self.controller.navigationController.navigationBar setNeedsLayout];
     
-    //self.controller.view.frame = CGRectMake(0.0, 80.0, 320.0, 568.0);
+     //self.controller.view.frame = CGRectMake(0.0, 80.0, 320.0, 568.0);
     
 }
 

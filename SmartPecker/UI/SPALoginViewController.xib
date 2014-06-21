@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="forgetPasswordButtonVerticalSpaceConstraint" destination="xss-xk-aFQ" id="CBT-ME-NFY"/>
                 <outlet property="loginButtonVerticalSpaceConstraint" destination="eMY-aM-SLv" id="ZuU-Zd-JrX"/>
+                <outlet property="loginImageView" destination="g1G-xF-4pK" id="nID-EP-u6R"/>
                 <outlet property="loginTextField" destination="RVy-pm-8cf" id="3V1-QD-Fl3"/>
                 <outlet property="loginTextFieldVerticalSpaceConstraint" destination="ORg-8w-AsO" id="w2e-Gq-gx8"/>
                 <outlet property="logoVerticalSpaceConstraint" destination="Of1-MB-jHZ" id="TI5-lO-C5T"/>
