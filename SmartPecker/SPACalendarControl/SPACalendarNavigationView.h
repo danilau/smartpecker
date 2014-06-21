@@ -18,5 +18,6 @@
 
 
 - (id)initWithController:(UIViewController*) controller;
+- (void)reloadView;
 
 @end

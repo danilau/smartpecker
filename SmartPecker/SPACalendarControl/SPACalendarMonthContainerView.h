@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPACalendarNavigationView.h"
+#import "SPACalendarMonthContainerViewDelegate.h"
 
 @interface SPACalendarMonthContainerView : UIView
+
+@property (nonatomic,weak) id<SPACalendarMonthContainerViewDelegate> delegate;
+@property (nonatomic,weak) SPACalendarNavigationView *calendarNavigatioView;
 
 @end

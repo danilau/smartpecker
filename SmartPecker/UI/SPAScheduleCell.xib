@@ -87,6 +87,9 @@
                     <constraint firstAttribute="bottom" secondItem="wIn-sr-bXq" secondAttribute="bottom" constant="3" id="v2w-aR-T1o"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="subjectLabel" destination="Vxj-ZW-3Vc" id="U0w-zM-NWf"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

@@ -11,6 +11,7 @@
 #import "SPACalendarMonthContainerView.h"
 #import "UINavigationBar+SPACalendarNavigationBarCategory.h"
 
+
 @implementation SPACalendarNavigationView
 
 -(id)initWithController: (UIViewController*) controller{
@@ -47,6 +48,9 @@
         //MonthContainer
         SPACalendarMonthContainerView* monthContainerView = [[SPACalendarMonthContainerView alloc] initWithFrame:CGRectMake(44.0, 0.0, 320.0, self.calendarHeight)];
         monthContainerView.hidden = YES;
+        monthContainerView.delegate = (id<SPACalendarMonthContainerViewDelegate>) [self controller];
+        monthContainerView.calendarNavigatioView = self;
+        
               
         
         SPACalendarControl* spaCalendarControl = [[SPACalendarControl alloc] initWithFrame:CGRectMake(-20.0, 0.0, 200.0, 20.0)];
@@ -79,6 +83,16 @@
     [self.controller.navigationController.navigationBar setNeedsLayout];
     
     //self.controller.view.frame = CGRectMake(0.0, 80.0, 320.0, 568.0);
+    
+}
+
+-(void) reloadView{
+    
+    if([[self.controller.view.class description] isEqualToString:@"UITableView"]){
+        [((UITableViewController*)self.controller).tableView reloadData];
+    }else{
+        [self.controller.view reloadInputViews];
+    }
     
 }
 /*

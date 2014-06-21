@@ -115,6 +115,7 @@
 		62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPASubjectAttributesCell.xib; sourceTree = "<group>"; };
 		62BAA5871953C6D500EE4B95 /* SPACalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarDayButton.h; sourceTree = "<group>"; };
 		62BAA5881953C6D500EE4B95 /* SPACalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarDayButton.m; sourceTree = "<group>"; };
+		62C75573195528770030A90A /* SPACalendarMonthContainerViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPACalendarMonthContainerViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +147,7 @@
 			children = (
 				62699F2619528E9200E2F1FA /* SPACalendarMonthContainerView.h */,
 				62699F2719528E9200E2F1FA /* SPACalendarMonthContainerView.m */,
+				62C75573195528770030A90A /* SPACalendarMonthContainerViewDelegate.h */,
 				62699F1D194E7EF900E2F1FA /* SPACalendarNavigationView.h */,
 				62699F1E194E7EF900E2F1FA /* SPACalendarNavigationView.m */,
 				62BAA5871953C6D500EE4B95 /* SPACalendarDayButton.h */,

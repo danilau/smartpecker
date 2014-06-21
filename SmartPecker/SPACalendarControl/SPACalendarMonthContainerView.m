@@ -14,11 +14,23 @@
     SPACalendarMonthLabel* _monthLabel;
     NSMutableArray* _dayButtons;
     NSCalendar* _calendar;
+ 
+    NSInteger _todayDay;
+    NSInteger _todayMonth;
+    NSInteger _todayYear;
+    NSInteger _activeDay;
+    NSInteger _activeMonth;
+    NSInteger _activeYear;
+ 
+    UIImage* _todayImage;
+    UIImage* _currentImage;
 }
 
 @end
 
 @implementation SPACalendarMonthContainerView
+
+//@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,6 +38,14 @@
     if (self) {
         // Initialization code
         _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDate* todayDate = [NSDate date];
+        NSDateComponents* todayComponents = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:todayDate];
+        _todayDay = _activeDay = [todayComponents day];
+        _todayMonth = _activeMonth = [todayComponents month];
+        _todayYear = _activeYear = [todayComponents year];
+
+        _todayImage = [UIImage imageNamed:@"calendar_daycurrent.png"];
+        _currentImage = [UIImage imageNamed:@"calendar_dayactive.png"];
         //Month Left Button
         UIImage* monthLeftButtonImage = [UIImage imageNamed:@"calendar_monthleft.png"];
         UIButton* monthLeftButton = [[UIButton alloc] initWithFrame:CGRectMake(8.0, 0.0, 44.0, 44.0)];
@@ -61,12 +81,16 @@
                 [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
                 button.titleLabel.font = [button.titleLabel.font fontWithSize:15.0];
                 [button addTarget:self action:@selector(dayButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [button setTitleColor: [UIColor colorWithRed:230.0/255.0 green:209.0/255.0 blue:184.0/255.0 alpha:1.0] forState: UIControlStateSelected];
+                [button setBackgroundImage:_currentImage forState:UIControlStateSelected];
                 [_dayButtons addObject:button];
                 [self addSubview:button];
             }
         }
         
         [self refreshDayButtonsByMonth:_monthLabel.activeMonth AndYear:_monthLabel.activeYear];
+        
 
     }
     return self;
@@ -83,7 +107,17 @@
 }
 
 -(void) dayButtonClicked:(SPACalendarDayButton*) sender{
-    NSLog(@"dfgdfg %i",sender.indexContainer);
+    _activeDay = sender.indexDay;
+    _activeMonth = sender.indexMonth;
+    _activeYear = sender.indexYear;
+    
+    if([[self delegate] respondsToSelector:@selector(dateFromCalendarWithDay:AndMonth:AndYear:)]) {
+        [[self delegate] dateFromCalendarWithDay:_activeDay AndMonth:_activeMonth AndYear:_activeYear];
+    }
+    
+    [self.calendarNavigatioView reloadView];
+    
+    [self refreshDayButtonsByMonth:_monthLabel.activeMonth AndYear:_monthLabel.activeYear];
 }
 
 - (NSString*) dayNameFromId:(NSInteger)identifier{
@@ -135,7 +169,6 @@
     
     //NSLog(@"%li",(long)numberOfDays);
     
-    NSInteger dayIndex = 1;
     NSInteger indexContainerStart = weekday;
     NSInteger indexContainerFinish = weekday + numberOfDays-1;
     
@@ -150,30 +183,55 @@
     
     NSInteger previousMonthNumberOfDays = previousMonthDays.length;
     
-    NSLog(@"%li",(long)previousMonthNumberOfDays);
+
     
     for(SPACalendarDayButton* button in _dayButtons){
         
+        [button setSelected:NO];
+        
         if(button.indexContainer >= indexContainerStart && button.indexContainer <= indexContainerFinish){
             [button setTitle:[NSString stringWithFormat:@"%i",(button.indexContainer-weekday+1)] forState:UIControlStateNormal];
-            button.titleLabel.textColor = [UIColor whiteColor];
+            
+            button.indexDay = button.indexContainer-weekday+1;
+            button.indexMonth = month;
+            button.indexYear = year;
+            
+          
         }else{
-            if (dayIndex < indexContainerStart) {
+            if (button.indexContainer < indexContainerStart) {
                 [button setTitle:[NSString stringWithFormat:@"%i",(previousMonthNumberOfDays - weekday + button.indexContainer+1)] forState:UIControlStateNormal];
+                button.indexDay = previousMonthNumberOfDays - weekday + button.indexContainer+1;
+                button.indexMonth = month == 1 ? 12 : month-1;
+                button.indexYear = month == 1 ? year-1 : year;
                 button.titleLabel.textColor = [UIColor colorWithRed:244.0/255.0 green:233.0/255.0 blue:211.0/255.0 alpha:1.0];
             }else{
                 [button setTitle:[NSString stringWithFormat:@"%i",(button.indexContainer-weekday-numberOfDays+1)] forState:UIControlStateNormal];
+                button.indexDay = button.indexContainer-weekday-numberOfDays+1;
+                button.indexMonth = month == 12 ? 1 : month+1;
+                button.indexYear = month == 12 ? year+1 : year;
                 button.titleLabel.textColor = [UIColor colorWithRed:244.0/255.0 green:233.0/255.0 blue:211.0/255.0 alpha:1.0];
             }
         }
-        dayIndex++;
+        
+        if(button.indexDay == _activeDay && button.indexMonth == _activeMonth && button.indexYear == _activeYear){
+            [button setSelected:YES];
             
+        }
+        if(button.indexDay == _todayDay && button.indexMonth == _todayMonth && button.indexYear == _todayYear){
+            [button setBackgroundImage:_todayImage forState:UIControlStateNormal];
+            
+        }else{
+            [button setBackgroundImage:nil forState:UIControlStateNormal];
+        }
+
+        
     }
 }
 
 - (int) weekDayToBelarusianSystem:(int)day{
     return day == 1 ? 7 : day-1;
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

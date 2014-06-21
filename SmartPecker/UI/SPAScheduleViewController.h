@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPACalendarMonthContainerViewDelegate.h"
 
-@interface SPAScheduleViewController : UITableViewController
+@interface SPAScheduleViewController : UITableViewController <SPACalendarMonthContainerViewDelegate>
 
 @end

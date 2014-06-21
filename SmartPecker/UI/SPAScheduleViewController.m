@@ -12,8 +12,13 @@
 #import "SPASubjectAttributesViewController.h"
 #import "SPACalendarNavigationView.h"
 #import "SPAAppDelegate.h"
+#import "SPACalendarMonthContainerViewDelegate.h"
 
-@interface SPAScheduleViewController ()
+@interface SPAScheduleViewController (){
+    NSInteger _activeDay;
+    NSInteger _activeMonth;
+    NSInteger _activeYear;
+}
 
 @end
 
@@ -24,6 +29,12 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDate* todayDate = [NSDate date];
+        NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:todayDate];
+        _activeDay = [todayComponents day];
+        _activeMonth = [todayComponents month];
+        _activeYear = [todayComponents year];
     }
     return self;
 }
@@ -89,14 +100,23 @@
     SPAScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[SPAScheduleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
     }
     // Configure the cell...
- 
+    cell.subjectLabel.text = [NSString stringWithFormat:@"%i",_activeDay];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 65.0f;
+}
+
+#pragma mark SPACalendarMonthContainerViewDelegate protocol implementation
+- (void) dateFromCalendarWithDay:(NSInteger) day AndMonth:(NSInteger) month AndYear:(NSInteger) year{
+    _activeDay = day;
+    _activeMonth = month;
+    _activeYear = year;
+    NSLog(@"%li %li %li",(long)day,(long)month,(long)year);
 }
 
 /*

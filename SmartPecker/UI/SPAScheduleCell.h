@@ -10,4 +10,7 @@
 
 @interface SPAScheduleCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UILabel *subjectLabel;
+
+
 @end

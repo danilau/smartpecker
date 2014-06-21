@@ -44,6 +44,18 @@
                 
                 newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, ((SPACalendarNavigationView*)view).calendarHeight+44.0);
                 
+                //MainController UITableView offset
+                
+                CGRect tableFrame = CGRectMake(0.0,0.0 , 320.0, 568.0+((SPACalendarNavigationView*)view).calendarHeight);
+                [((UITableView*)((SPACalendarNavigationView*)view).controller.view) setFrame:tableFrame];
+                for (UIView *tableSubview in [((UITableView*)((SPACalendarNavigationView*)view).controller.view) subviews]) {
+                    if ([[tableSubview.class description] isEqualToString:@"UITableViewWrapperView"]) {
+                        CGRect tableSubviewFrame = CGRectMake(0.0,((SPACalendarNavigationView*)view).calendarHeight, 320.0, 568.0);
+                        [tableSubview setFrame:tableSubviewFrame];
+                    }
+                }
+                
+                
             }else{
                 newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 44.0);
                 //SPACalendarNavigationView coordinates correction
@@ -54,6 +66,17 @@
                     
                     
                     ((UINavigationController*)((SPACalendarNavigationView*)view).controller.navigationController).visibleViewController.view.frame = anotherControllerFrame;
+                }
+                
+                //MainController UITableView offset
+                
+                CGRect tableFrame = CGRectMake(0.0,0.0 , 320.0, 568.0);
+                [((UITableView*)((SPACalendarNavigationView*)view).controller.view) setFrame:tableFrame];
+                for (UIView *tableSubview in [((UITableView*)((SPACalendarNavigationView*)view).controller.view) subviews]) {
+                    if ([[tableSubview.class description] isEqualToString:@"UITableViewWrapperView"]) {
+                        CGRect tableSubviewFrame = CGRectMake(0.0,0.0, 320.0, 568.0);
+                        [tableSubview setFrame:tableSubviewFrame];
+                    }
                 }
                 
                 
