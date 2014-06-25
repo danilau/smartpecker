@@ -22,6 +22,8 @@
 - (id)init {
     if (self = [super init]) {
         self.activated = NO;
+        self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] init];
+        self.webServiceCoordinator.delegate = self;
     }
     return self;
 }

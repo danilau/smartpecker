@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPAWebServiceCoordinator.h"
+#import "SPAWebServiceCoordinatorDelegate.h"
 
-@interface SPAModelCoordinator : NSObject
+@interface SPAModelCoordinator : NSObject <SPAWebServiceCoordinatorDelegate>
 
 @property (nonatomic) BOOL activated;
+@property (nonatomic,strong) SPAWebServiceCoordinator* webServiceCoordinator;
 
 + (id)sharedModelCoordinator;
 

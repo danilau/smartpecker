@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62112C01195B410B00E97C4F /* SPAWebServiceCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62112C00195B410B00E97C4F /* SPAWebServiceCoordinator.m */; };
 		62699F1C194E742100E2F1FA /* SPACalendarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F1B194E742100E2F1FA /* SPACalendarControl.m */; };
 		62699F1F194E7EF900E2F1FA /* SPACalendarNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F1E194E7EF900E2F1FA /* SPACalendarNavigationView.m */; };
 		62699F22194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F21194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m */; };
@@ -59,6 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62112BFF195B410B00E97C4F /* SPAWebServiceCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAWebServiceCoordinator.h; sourceTree = "<group>"; };
+		62112C00195B410B00E97C4F /* SPAWebServiceCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAWebServiceCoordinator.m; sourceTree = "<group>"; };
+		62112C02195B414B00E97C4F /* SPAWebServiceCoordinatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAWebServiceCoordinatorDelegate.h; sourceTree = "<group>"; };
 		62699F1A194E742100E2F1FA /* SPACalendarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarControl.h; sourceTree = "<group>"; };
 		62699F1B194E742100E2F1FA /* SPACalendarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarControl.m; sourceTree = "<group>"; };
 		62699F1D194E7EF900E2F1FA /* SPACalendarNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarNavigationView.h; sourceTree = "<group>"; };
@@ -295,6 +299,9 @@
 				62C75576195534670030A90A /* SPANetworkCoordinator.m */,
 				62E1B12A195B3A7A005C7B03 /* SPAModelCoordinator.h */,
 				62E1B12B195B3A7A005C7B03 /* SPAModelCoordinator.m */,
+				62112BFF195B410B00E97C4F /* SPAWebServiceCoordinator.h */,
+				62112C00195B410B00E97C4F /* SPAWebServiceCoordinator.m */,
+				62112C02195B414B00E97C4F /* SPAWebServiceCoordinatorDelegate.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +418,7 @@
 				62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */,
 				62B4E56419148C0C000EA9F1 /* main.m in Sources */,
 				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
+				62112C01195B410B00E97C4F /* SPAWebServiceCoordinator.m in Sources */,
 				62C75577195534670030A90A /* SPANetworkCoordinator.m in Sources */,
 				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
 				62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */,
