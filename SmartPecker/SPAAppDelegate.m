@@ -24,27 +24,43 @@
     
     //Model Coordinator
     SPAModelCoordinator* modelCoordinator = [SPAModelCoordinator sharedModelCoordinator];
+    NSLog(@"%u", modelCoordinator.activationMode);
+    
+    switch (modelCoordinator.activationMode) {
+        case SPAModelActivationModeWebService:{
+            SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
+            
+            self.spaLoginNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
+            
+            self.window.rootViewController = self.spaLoginNavigationController;
+            
+        };break;
+        case SPAModelActivationModeCoreData:{
+            SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
+            self.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
+            
+            SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
+            
+            //Init of jaSidePanelController
+            self.jaSidePanelController = [[JASidePanelController alloc] init];
+            self.jaSidePanelController.centerPanel = self.spaNavigationController;
+            self.jaSidePanelController.leftPanel = spaSubjectsViewController;
+            
+            self.window.rootViewController = self.jaSidePanelController;
+            
+        };break;
+    
+
+    }
     
    
-    SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
     
-    self.spaLoginNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
-      
-    self.window.rootViewController = self.spaLoginNavigationController;
     
     
     //After authentication
     if(NO){
       
-    SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
-    [self.spaNavigationController setViewControllers:[NSArray arrayWithObject:spaScheduleViewController]];
     
-    SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
-    
-    //Init of jaSidePanelController
-    self.jaSidePanelController = [[JASidePanelController alloc] init];
-    self.jaSidePanelController.centerPanel = self.spaNavigationController;
-    self.jaSidePanelController.leftPanel = spaSubjectsViewController;
     
     }
     

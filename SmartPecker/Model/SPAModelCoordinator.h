@@ -10,9 +10,15 @@
 #import "SPAWebServiceCoordinator.h"
 #import "SPAWebServiceCoordinatorDelegate.h"
 
+typedef enum _SPAModelActivationMode {
+    SPAModelActivationModeCoreData = 0,
+    SPAModelActivationModeWebService
+} SPAModelActivationMode;
+
 @interface SPAModelCoordinator : NSObject <SPAWebServiceCoordinatorDelegate>
 
 @property (nonatomic) BOOL activated;
+@property (nonatomic) SPAModelActivationMode activationMode;
 @property (nonatomic,strong) SPAWebServiceCoordinator* webServiceCoordinator;
 
 + (id)sharedModelCoordinator;

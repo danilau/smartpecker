@@ -8,14 +8,9 @@
 
 #import "SPAModelCoordinator.h"
 
-typedef enum _SPAModelActivationDirection {
-    SPAModelActivationDirectionCoreData = 0,
-    SPAModelActivationDirectionWebService
-} SPAModelActivationDirection;
-
 @interface SPAModelCoordinator ()
 
-- (SPAModelActivationDirection) checkActivationDirection;
+- (SPAModelActivationMode) checkActivationMode;
 - (void) activateWithCoreData;
 - (void) activateWithAuthentication;
 
@@ -37,13 +32,7 @@ typedef enum _SPAModelActivationDirection {
         self.activated = NO;
         self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] init];
         self.webServiceCoordinator.delegate = self;
-        
-        SPAModelActivationDirection direction = [self  checkActivationDirection];
-        if(direction == SPAModelActivationDirectionWebService){
-            [self activateWithAuthentication];
-        }else{
-            [self activateWithCoreData];
-        }
+        self.activationMode = [self  checkActivationMode];
         
     }
     return self;
@@ -51,9 +40,9 @@ typedef enum _SPAModelActivationDirection {
 
 #pragma mark - Activation
 
-- (SPAModelActivationDirection) checkActivationDirection{
+- (SPAModelActivationMode) checkActivationMode{
     
-    return SPAModelActivationDirectionWebService;
+    return SPAModelActivationModeCoreData;
     
 }
 
