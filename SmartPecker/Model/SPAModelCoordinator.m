@@ -8,6 +8,19 @@
 
 #import "SPAModelCoordinator.h"
 
+typedef enum _SPAModelActivationDirection {
+    SPAModelActivationDirectionCoreData = 0,
+    SPAModelActivationDirectionWebService
+} SPAModelActivationDirection;
+
+@interface SPAModelCoordinator ()
+
+- (SPAModelActivationDirection) checkActivationDirection;
+- (void) activateWithCoreData;
+- (void) activateWithAuthentication;
+
+@end
+
 @implementation SPAModelCoordinator
 
 + (id)sharedModelCoordinator {
@@ -24,8 +37,32 @@
         self.activated = NO;
         self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] init];
         self.webServiceCoordinator.delegate = self;
+        
+        SPAModelActivationDirection direction = [self  checkActivationDirection];
+        if(direction == SPAModelActivationDirectionWebService){
+            [self activateWithAuthentication];
+        }else{
+            [self activateWithCoreData];
+        }
+        
     }
     return self;
+}
+
+#pragma mark - Activation
+
+- (SPAModelActivationDirection) checkActivationDirection{
+    
+    return SPAModelActivationDirectionWebService;
+    
+}
+
+- (void) activateWithCoreData{
+    
+}
+
+- (void) activateWithAuthentication{
+
 }
 
 @end
