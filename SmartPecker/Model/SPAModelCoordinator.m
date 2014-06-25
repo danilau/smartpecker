@@ -21,7 +21,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        
+        self.activated = NO;
     }
     return self;
 }

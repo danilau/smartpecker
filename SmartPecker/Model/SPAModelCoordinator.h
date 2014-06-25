@@ -10,6 +10,8 @@
 
 @interface SPAModelCoordinator : NSObject
 
+@property (nonatomic) BOOL activated;
+
 + (id)sharedModelCoordinator;
 
 @end

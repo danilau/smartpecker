@@ -12,6 +12,7 @@
 #import "SPALoginViewController.h"
 #import "SPAScheduleViewController.h"
 #import "SPASubjectsViewController.h"
+#import "SPAModelCoordinator.h"
 #import "SPANetworkCoordinator.h"
 
 @implementation SPAAppDelegate
@@ -21,6 +22,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    //Model Coordinator
+    SPAModelCoordinator* modelCoordinator = [SPAModelCoordinator sharedModelCoordinator];
+    
+   
     SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
     
     self.spaLoginNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
