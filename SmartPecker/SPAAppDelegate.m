@@ -28,11 +28,14 @@
     
     switch (modelCoordinator.activationMode) {
         case SPAModelActivationModeWebService:{
+            
             SPALoginViewController *spaLoginViewController = [[SPALoginViewController alloc] init];
             
             self.spaLoginNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaLoginViewController];
             
             self.window.rootViewController = self.spaLoginNavigationController;
+            
+            modelCoordinator.activationDelegate = spaLoginViewController;
             
         };break;
         case SPAModelActivationModeCoreData:{
@@ -48,20 +51,11 @@
             
             self.window.rootViewController = self.jaSidePanelController;
             
+            modelCoordinator.activationDelegate = self;
+            
         };break;
     
 
-    }
-    
-   
-    
-    
-    
-    //After authentication
-    if(NO){
-      
-    
-    
     }
     
     self.window.backgroundColor = [UIColor whiteColor];
@@ -95,6 +89,13 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [[SPANetworkCoordinator sharedNetworkCoordinator] logOut];
+}
+
+
+#pragma mark - SPAModelActivationDelegate
+
+- (void) modelActivationDone{
+    NSLog(@"Activation is Done");
 }
 
 @end

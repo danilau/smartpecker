@@ -14,6 +14,7 @@
 #import "SPANetworkCoordinator.h"
 #import "SPANetworkCoordinatorDelegate.h"
 #import "SPAAppDelegate.h"
+#import "SPAModelCoordinator.h"
 
 @interface SPALoginViewController (){
     UIActivityIndicatorView *_indicator;
@@ -70,20 +71,23 @@
 }
 
 - (IBAction)touchDownLoginButton:(id)sender {
+    SPAModelCoordinator* modelCoordinator = [SPAModelCoordinator sharedModelCoordinator];
     
-    SPANetworkCoordinator* coord = [SPANetworkCoordinator sharedNetworkCoordinator];
-    coord.delegate = self;
-    [coord makeAuthenticationWithName:self.loginTextField.text  AndPass:self.passwordTextField.text];
-    if(_indicator == nil){
-        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        _indicator.frame = CGRectMake(0.0,0.0,47.0,47.0);
-        NSLog(@"%f",self.loginImageView.frame.origin.x);
-        _indicator.center = self.loginImageView.center;
-        [self.view addSubview:_indicator];
-    }
-    self.loginImageView.hidden = YES;
+    [modelCoordinator activateViaWebServiceWithLogin:self.loginTextField.text AndPassword:self.passwordTextField.text];
     
-    [_indicator startAnimating];
+//    SPANetworkCoordinator* coord = [SPANetworkCoordinator sharedNetworkCoordinator];
+//    coord.delegate = self;
+//    [coord makeAuthenticationWithName:self.loginTextField.text  AndPass:self.passwordTextField.text];
+//    if(_indicator == nil){
+//        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//        _indicator.frame = CGRectMake(0.0,0.0,47.0,47.0);
+//        NSLog(@"%f",self.loginImageView.frame.origin.x);
+//        _indicator.center = self.loginImageView.center;
+//        [self.view addSubview:_indicator];
+//    }
+//    self.loginImageView.hidden = YES;
+//    
+//    [_indicator startAnimating];
     
 }
 
@@ -113,6 +117,12 @@
     }else{
         self.loginImageView.hidden = NO;
     }
+}
+
+#pragma mark - SPAModelActivationDelegate
+
+- (void) modelActivationDone{
+     NSLog(@"Activation is Done");
 }
 
 @end

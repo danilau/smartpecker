@@ -11,8 +11,6 @@
 @interface SPAModelCoordinator ()
 
 - (SPAModelActivationMode) checkActivationMode;
-- (void) activateWithCoreData;
-- (void) activateWithAuthentication;
 
 @end
 
@@ -29,10 +27,10 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.activated = NO;
+        _activated = NO;
         self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] init];
         self.webServiceCoordinator.delegate = self;
-        self.activationMode = [self  checkActivationMode];
+        _activationMode = [self checkActivationMode];
         
     }
     return self;
@@ -42,15 +40,21 @@
 
 - (SPAModelActivationMode) checkActivationMode{
     
-    return SPAModelActivationModeCoreData;
+    return SPAModelActivationModeWebService;
     
 }
 
-- (void) activateWithCoreData{
-    
+- (void) activateViaCoreData{
+    if([[self activationDelegate] respondsToSelector:@selector(modelActivationDone)]) {
+        [[self activationDelegate] modelActivationDone];
+    }
 }
 
-- (void) activateWithAuthentication{
+- (void) activateViaWebServiceWithLogin:(NSString*) login AndPassword:(NSString*) password{
+    NSLog(@"%@ %@",login,password);
+    if([[self activationDelegate] respondsToSelector:@selector(modelActivationDone)]) {
+        [[self activationDelegate] modelActivationDone];
+    }
 
 }
 
