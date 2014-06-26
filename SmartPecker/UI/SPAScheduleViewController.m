@@ -43,7 +43,7 @@
 {
     [super viewDidLoad];
     
-    SPAAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    SPAAppDelegate *appDelegate = (SPAAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -103,7 +103,7 @@
         
     }
     // Configure the cell...
-    cell.subjectLabel.text = [NSString stringWithFormat:@"%i",_activeDay];
+    cell.subjectLabel.text = [NSString stringWithFormat:@"%li",(long)_activeDay];
     return cell;
 }
 

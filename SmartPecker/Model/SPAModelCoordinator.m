@@ -28,7 +28,7 @@
 - (id)init {
     if (self = [super init]) {
         _activated = NO;
-        self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] init];
+        self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] initWithURL:[NSURL URLWithString:@"http://spectest.usbelar.by"]];
         self.webServiceCoordinator.delegate = self;
         _activationMode = [self checkActivationMode];
         
@@ -51,11 +51,18 @@
 }
 
 - (void) activateViaWebServiceWithLogin:(NSString*) login AndPassword:(NSString*) password{
-    NSLog(@"%@ %@",login,password);
+    [self.webServiceCoordinator makeAuthorizationWithName:login AndPass:password];
+        
     if([[self activationDelegate] respondsToSelector:@selector(modelActivationDone)]) {
         [[self activationDelegate] modelActivationDone];
     }
 
+}
+
+#pragma mark - SPAWebServiceCoordinatorDelegate implementation
+
+- (void) didMakeAuthentication{
+    
 }
 
 @end

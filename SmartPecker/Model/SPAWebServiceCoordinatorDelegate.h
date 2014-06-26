@@ -10,4 +10,6 @@
 
 @protocol SPAWebServiceCoordinatorDelegate <NSObject>
 
+- (void) didMakeAuthentication;
+
 @end

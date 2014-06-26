@@ -98,7 +98,7 @@
     if(authenticated){
         
         
-        SPAAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        SPAAppDelegate *appDelegate = (SPAAppDelegate*)[[UIApplication sharedApplication] delegate];
         
         SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
         
@@ -122,7 +122,7 @@
 #pragma mark - SPAModelActivationDelegate
 
 - (void) modelActivationDone{
-     NSLog(@"Activation is Done");
+     //NSLog(@"Activation is Done");
 }
 
 @end

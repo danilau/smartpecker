@@ -13,4 +13,9 @@
 
 @property (nonatomic,weak) id<SPAWebServiceCoordinatorDelegate> delegate;
 
+- (id) initWithURL:(NSURL*)url;
+
+- (void) makeAuthorizationWithName:(NSString*) name AndPass:(NSString*) pass;
+- (void) clearCookies;
+
 @end
