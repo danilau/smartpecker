@@ -8,10 +8,16 @@
 
 #import <CoreData/CoreData.h>
 #import "SPAModelCoordinator.h"
+#import "ManagedObjects/InformationSchema.h"
 
 @interface SPAModelCoordinator ()
 
 - (SPAModelActivationMode) checkActivationMode;
+
+//CoreData methods
+- (void) initSchema;
+- (NSNumber*) getSchemaParameter:(NSString*) param;
+- (void) updateSchemaParameter:(NSString*) param WithValue:(NSInteger) integer;
 
 @end
 
@@ -36,6 +42,9 @@
         self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] initWithURL:[NSURL URLWithString:@"http://spectest.usbelar.by/smartpecker"]];
         self.webServiceCoordinator.delegate = self;
         _activationMode = [self checkActivationMode];
+        
+        //CoreData initialization
+        [self initSchema];
         
     }
     return self;
@@ -154,6 +163,63 @@
     }
     
     return _persistentStoreCoordinator;
+}
+
+- (void) initSchema{
+    
+    NSLog(@"%ld",(long)[self getSchemaParameter:@"schemaInitialized"]);
+    
+    NSArray *schemaArray = [NSArray arrayWithObjects:@"schemaInitialized",@"baseInstalled", nil];
+    
+    for(NSString* paramName in schemaArray){
+        InformationSchema* schemaObject = [NSEntityDescription insertNewObjectForEntityForName:@"InformationSchema" inManagedObjectContext:self.managedObjectContext];
+        
+        if(schemaObject!=nil){
+            
+            schemaObject.name = paramName;
+            schemaObject.value = @0;
+            
+            NSError* savingError;
+            
+            if ([self.managedObjectContext save:&savingError]){
+                NSLog(@"Successfully saved the context.");
+            } else {
+                NSLog(@"Failed to save the context. Error = %@", savingError);
+            }
+        }else{
+            NSLog(@"Failed to create new record in InformationSchema.");
+        }
+        
+    }
+
+    
+}
+
+- (NSNumber*) getSchemaParameter:(NSString*) param{
+    
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"InformationSchema"];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == '%@'",param ]];
+    
+    NSError *requestError = nil;
+
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+    
+    if([results count] > 0){
+    
+        NSLog(@"RequestError - %@",requestError);
+    
+        InformationSchema *schemaInitializedObject = (InformationSchema *)results[0];
+    
+        return schemaInitializedObject.value;
+        
+    }else{
+        return nil;
+    }
+}
+
+- (void) updateSchemaParameter:(NSString*) param WithValue:(NSInteger) integer{
+    
 }
 
 
