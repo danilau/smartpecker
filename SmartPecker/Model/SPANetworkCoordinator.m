@@ -7,161 +7,79 @@
 //
 
 #import "SPANetworkCoordinator.h"
+#import "Reachability/Reachability.h"
 
-@implementation SPANetworkCoordinator{
-    NSURLSession* _session;
+@interface SPANetworkCoordinator (){
+    BOOL _currentHostStatus;
+    BOOL _currentInternetStatus;
 }
 
-+ (id)sharedNetworkCoordinator {
-    static SPANetworkCoordinator *sharedNetworkCoordinator = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedNetworkCoordinator = [[self alloc] init];
-    });
-    return sharedNetworkCoordinator;
-}
+@property (nonatomic) Reachability *hostReachability;
+@property (nonatomic) Reachability *internetReachability;
+
+@end
+
+@implementation SPANetworkCoordinator
 
 - (id)init {
     if (self = [super init]) {
-        self.authenticated = NO;
-        
-        
+
     }
     return self;
 }
 
+- (id)initWithHostName:(NSString*) hostName {
+    if (self = [super init]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+        
+        self.hostReachability = [Reachability reachabilityWithHostName:hostName];
+        [self.hostReachability startNotifier];
+        
+        self.internetReachability = [Reachability reachabilityForInternetConnection];
+        [self.internetReachability startNotifier];
+    }
+    return self;
+}
+- (void)setWebServiceDelegate:(id<SPANetworkCoordinatorDelegate>)delegate{
+    _webServiceDelegate = delegate;
+    [self sendDataToDelegateFromReachability:self.hostReachability];
+    [self sendDataToDelegateFromReachability:self.internetReachability];
+}
+
+/*!
+ * Called by Reachability whenever status changes.
+ */
+- (void) reachabilityChanged:(NSNotification *)note
+{
+    Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+    
+    [self sendDataToDelegateFromReachability:curReach];
+	
+}
+
+- (void) sendDataToDelegateFromReachability:(Reachability*) curReach{
+    NetworkStatus status = [curReach currentReachabilityStatus];
+    
+    if(curReach == self.hostReachability){
+        if([[self webServiceDelegate] respondsToSelector:@selector(didChangeReachabilityWithHostStatus:)]) {
+            [[self webServiceDelegate] didChangeReachabilityWithHostStatus:(status!=NotReachable?YES:NO)];
+        }
+    }
+    
+    if(curReach == self.internetReachability){
+        if([[self webServiceDelegate] respondsToSelector:@selector(didChangeReachabilityWithInternetStatus:)]) {
+            [[self webServiceDelegate] didChangeReachabilityWithInternetStatus:(status!=NotReachable?YES:NO)];
+        }
+    }
+    
+    
+}
+
 - (void)dealloc {
     // Should never be called, but just here for clarity really.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
-- (void)makeAuthenticationWithName:(NSString*) aname AndPass:(NSString*) apass{
-    
-    //NSURLSession test
-    NSURLSessionConfiguration* sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-     
-    sessionConfiguration.allowsCellularAccess = YES;
-    sessionConfiguration.timeoutIntervalForRequest = 30.0;
-    sessionConfiguration.timeoutIntervalForResource = 60.0;
-    sessionConfiguration.HTTPMaximumConnectionsPerHost = 1;
-     
-    _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:nil delegateQueue:nil];
-    NSURL* url = [NSURL URLWithString:@"http://spectest.usbelar.by/user"];
-     
-    NSMutableURLRequest* formHashRequest = [NSMutableURLRequest requestWithURL:url];
-     
-    NSURLSessionDataTask* hashCodeTask = [_session dataTaskWithRequest:formHashRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
-        
-        if(error != nil){
-            if(error.code == -1009){
-                dispatch_async(dispatch_get_main_queue(), ^(){
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Интернет подключение отсутствует." delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles: nil];
-                    [alert show];
-                });
-            }
-            self.authenticated = NO;
-            return;
-        }
-     
-        NSString *formBuildId;
-        NSString *name = aname;
-        NSString *pass = apass;
-        NSString *formId = @"user_login";
-        NSString *op = @"Log in";
-        
-        NSString* dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-        if([dataString rangeOfString:@"value=\"form-"].location == NSNotFound){
-            //Error
-        }else{
-            NSInteger formHashCodeStartPosition = [dataString rangeOfString:@"value=\"form-"].location+7;
-            NSInteger formHashCodeLength = 48;
-            NSRange formHashRange = NSMakeRange(formHashCodeStartPosition, formHashCodeLength);
-            formBuildId = [dataString substringWithRange:formHashRange];
-        }
-     
-        NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowedInMemoryOnly timeoutInterval:30.0];
-        [urlRequest setHTTPMethod:@"POST"];
-     
-        NSString* postString = [NSString stringWithFormat:@"name=%@&pass=%@&form_build_id=%@&form_id=%@&op=%@",name,pass,formBuildId,formId,op];
-        
-       
-        [urlRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        
-        NSURLSessionDataTask* dataTask = [_session dataTaskWithRequest:urlRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
-            
-            if(error != nil){
-                if(error.code == -1009){
-                    dispatch_async(dispatch_get_main_queue(), ^(){
-                        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Интернет подключение отсутствует." delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles: nil];
-                        [alert show];
-                    });
-                }
-                self.authenticated = NO;
-                return;
-            }
-
-            
-            
-            NSURL* specURL = [NSURL URLWithString:@"http://spectest.usbelar.by/smartpecker"];
-            NSMutableURLRequest* specRequest = [NSMutableURLRequest requestWithURL:specURL];
-            
-            NSURLSessionDataTask* specTask = [_session dataTaskWithRequest:specRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
-                
-                if(error != nil){
-                    if(error.code == -1009){
-                        dispatch_async(dispatch_get_main_queue(), ^(){
-                            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Интернет подключение отсутствует." delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles: nil];
-                            [alert show];
-                        });
-                    }
-                    self.authenticated = NO;
-                    return;
-                }
-
-     	                
-                NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-                
-                if(httpResponse.statusCode >= 200 && httpResponse.statusCode <300){
-                    self.authenticated = YES;
-
-                }else{
-                    self.authenticated = NO;
-                    dispatch_async(dispatch_get_main_queue(), ^(){
-                        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверный логин либо пароль." delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles: nil];
-                        [alert show];
-                    });
-
-                }
-               
-                dispatch_sync(dispatch_get_main_queue(), ^(){
-                if([[self delegate] respondsToSelector:@selector(didMakeAuthenticationAttemptWithResult:AndData:)]) {
-                    [[self delegate] didMakeAuthenticationAttemptWithResult:self.authenticated AndData:data];
-                    
-                }
-                });
-         
-            }];
-            
-            [specTask resume];
-
-        }];
-     
-        [dataTask resume];
-     
-     }];
-     
-     [hashCodeTask resume];
-}
-
-- (void) logOut{
-    //NSURLSession test
-    NSArray * array = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:@"http://spectest.usbelar.by"]];
-    
-    for (NSHTTPCookie* cookie in array) {
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-    }
-  
-}
 
 @end

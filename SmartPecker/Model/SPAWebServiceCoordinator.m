@@ -7,6 +7,7 @@
 //
 
 #import "SPAWebServiceCoordinator.h"
+#import "SPANetworkCoordinator.h"
 
 typedef enum _SPAWebServiceMessageStatus {
     SPAWebServiceMessageStatusError = 0,
@@ -14,6 +15,9 @@ typedef enum _SPAWebServiceMessageStatus {
 } SPAWebServiceMessageStatus;
 
 @interface SPAWebServiceCoordinator (){
+    BOOL _currentHostStatus;
+    BOOL _currentInternetStatus;
+    SPANetworkCoordinator* _networkCoordinator;
     NSURL* _webServiceURL;
 }
 
@@ -36,7 +40,8 @@ typedef enum _SPAWebServiceMessageStatus {
     if (self) {
         [self clearCookies];
         _webServiceURL = url;
-        NSLog(@"%@",url);
+        _networkCoordinator = [[SPANetworkCoordinator alloc] initWithHostName:[_webServiceURL host]];
+        _networkCoordinator.webServiceDelegate = self;
     }
     return(self);
 }
@@ -52,9 +57,9 @@ typedef enum _SPAWebServiceMessageStatus {
     sessionConfiguration.HTTPMaximumConnectionsPerHost = 1;
     
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:nil delegateQueue:nil];
-    NSURL* url = [NSURL URLWithString:@"http://spectest.usbelar.by/user"];
+    NSURL* urlForAuthorization = [NSURL URLWithString:@"/user" relativeToURL:_webServiceURL];
     
-    NSMutableURLRequest* formCodeRequest = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest* formCodeRequest = [NSMutableURLRequest requestWithURL:urlForAuthorization];
     //Task to obtain code from authorization form
     NSURLSessionDataTask* formCodeTask = [session dataTaskWithRequest:formCodeRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
         
@@ -84,7 +89,7 @@ typedef enum _SPAWebServiceMessageStatus {
             return;
         }
         
-        NSMutableURLRequest* authorizationRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLCacheStorageAllowedInMemoryOnly timeoutInterval:30.0];
+        NSMutableURLRequest* authorizationRequest = [NSMutableURLRequest requestWithURL:urlForAuthorization cachePolicy:NSURLCacheStorageAllowedInMemoryOnly timeoutInterval:30.0];
         [authorizationRequest setHTTPMethod:@"POST"];
         
         NSString* postString = [NSString stringWithFormat:@"name=%@&pass=%@&form_build_id=%@&form_id=%@&op=%@",name,pass,formBuildId,formId,op];
@@ -102,10 +107,7 @@ typedef enum _SPAWebServiceMessageStatus {
                 return;
             }
             
-            
-            
-            NSURL* specURL = [NSURL URLWithString:@"http://spectest.usbelar.by/smartpecker"];
-            NSMutableURLRequest* checkRequest = [NSMutableURLRequest requestWithURL:specURL];
+            NSMutableURLRequest* checkRequest = [NSMutableURLRequest requestWithURL:_webServiceURL];
             //Task to check if user authenticated
             NSURLSessionDataTask* checkTask = [session dataTaskWithRequest:checkRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
                 
@@ -164,7 +166,7 @@ typedef enum _SPAWebServiceMessageStatus {
     }
     
     dispatch_async(dispatch_get_main_queue(), ^(){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:string delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles: nil];
         [alert show];
     });
 }
@@ -177,6 +179,17 @@ typedef enum _SPAWebServiceMessageStatus {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
     
+}
+
+#pragma mark - SPANetworkCoordinatorDelegate methods implementation
+
+- (void) didChangeReachabilityWithHostStatus:(BOOL) status{
+    NSLog(@"Host status %i",status);
+    _currentHostStatus = status;
+}
+- (void) didChangeReachabilityWithInternetStatus:(BOOL) status{
+        NSLog(@"Internet status %i",status);
+    _currentInternetStatus = status;
 }
 
 @end

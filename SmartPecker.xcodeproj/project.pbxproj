@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62112C01195B410B00E97C4F /* SPAWebServiceCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62112C00195B410B00E97C4F /* SPAWebServiceCoordinator.m */; };
+		62112C07195CBD0F00E97C4F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 62112C06195CBD0F00E97C4F /* Reachability.m */; };
 		62699F1C194E742100E2F1FA /* SPACalendarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F1B194E742100E2F1FA /* SPACalendarControl.m */; };
 		62699F1F194E7EF900E2F1FA /* SPACalendarNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F1E194E7EF900E2F1FA /* SPACalendarNavigationView.m */; };
 		62699F22194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F21194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m */; };
@@ -64,6 +65,8 @@
 		62112C00195B410B00E97C4F /* SPAWebServiceCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAWebServiceCoordinator.m; sourceTree = "<group>"; };
 		62112C02195B414B00E97C4F /* SPAWebServiceCoordinatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAWebServiceCoordinatorDelegate.h; sourceTree = "<group>"; };
 		62112C03195B579B00E97C4F /* SPAModelActivationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAModelActivationDelegate.h; sourceTree = "<group>"; };
+		62112C05195CBD0F00E97C4F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		62112C06195CBD0F00E97C4F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		62699F1A194E742100E2F1FA /* SPACalendarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarControl.h; sourceTree = "<group>"; };
 		62699F1B194E742100E2F1FA /* SPACalendarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarControl.m; sourceTree = "<group>"; };
 		62699F1D194E7EF900E2F1FA /* SPACalendarNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarNavigationView.h; sourceTree = "<group>"; };
@@ -154,6 +157,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62112C04195CBCE100E97C4F /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				62112C05195CBD0F00E97C4F /* Reachability.h */,
+				62112C06195CBD0F00E97C4F /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		62699F19194E73ED00E2F1FA /* SPACalendarControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +307,7 @@
 		62C75574195534270030A90A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				62112C04195CBCE100E97C4F /* Reachability */,
 				62C7557819556B9B0030A90A /* SPANetworkCoordinatorDelegate.h */,
 				62C75575195534670030A90A /* SPANetworkCoordinator.h */,
 				62C75576195534670030A90A /* SPANetworkCoordinator.m */,
@@ -429,6 +442,7 @@
 				62B71D2F1918A60700F4685C /* SPASubjectsTitleCell.m in Sources */,
 				62699F1F194E7EF900E2F1FA /* SPACalendarNavigationView.m in Sources */,
 				62699F22194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m in Sources */,
+				62112C07195CBD0F00E97C4F /* Reachability.m in Sources */,
 				62B71D201918860400F4685C /* SPASubjectsViewController.m in Sources */,
 				62B71D2719188A5A00F4685C /* JASidePanelController.m in Sources */,
 				62B71D1B19186A0100F4685C /* SPAScheduleCell.m in Sources */,

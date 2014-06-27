@@ -28,7 +28,7 @@
 - (id)init {
     if (self = [super init]) {
         _activated = NO;
-        self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] initWithURL:[NSURL URLWithString:@"http://spectest.usbelar.by"]];
+        self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] initWithURL:[NSURL URLWithString:@"http://spectest.usbelar.by/smartpecker"]];
         self.webServiceCoordinator.delegate = self;
         _activationMode = [self checkActivationMode];
         

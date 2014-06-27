@@ -11,13 +11,8 @@
 
 @interface SPANetworkCoordinator : NSObject
 
-@property (nonatomic) BOOL authenticated;
+@property (nonatomic,weak) id<SPANetworkCoordinatorDelegate> webServiceDelegate;
 
-@property (nonatomic, weak) id<SPANetworkCoordinatorDelegate> delegate;
-
-+ (id)sharedNetworkCoordinator;
-
-- (void) makeAuthenticationWithName:(NSString*) name AndPass:(NSString*) pass;
-- (void) logOut;
+- (id)initWithHostName:(NSString*) hostName;
 
 @end

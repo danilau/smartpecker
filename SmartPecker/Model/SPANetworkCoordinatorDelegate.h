@@ -10,6 +10,7 @@
 
 @protocol SPANetworkCoordinatorDelegate <NSObject>
 
-- (void) didMakeAuthenticationAttemptWithResult:(BOOL) authenticated AndData:(NSData*)data;
+- (void) didChangeReachabilityWithHostStatus:(BOOL) status;
+- (void) didChangeReachabilityWithInternetStatus:(BOOL) status;
 
 @end

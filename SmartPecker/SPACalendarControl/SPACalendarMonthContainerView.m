@@ -189,7 +189,7 @@
         [button setSelected:NO];
         
         if(button.indexContainer >= indexContainerStart && button.indexContainer <= indexContainerFinish){
-            [button setTitle:[NSString stringWithFormat:@"%li",(button.indexContainer-weekday+1)] forState:UIControlStateNormal];
+            [button setTitle:[NSString stringWithFormat:@"%i",(button.indexContainer-weekday+1)] forState:UIControlStateNormal];
             
             button.indexDay = button.indexContainer-weekday+1;
             button.indexMonth = month;
@@ -198,13 +198,13 @@
           
         }else{
             if (button.indexContainer < indexContainerStart) {
-                [button setTitle:[NSString stringWithFormat:@"%li",(previousMonthNumberOfDays - weekday + button.indexContainer+1)] forState:UIControlStateNormal];
+                [button setTitle:[NSString stringWithFormat:@"%i",(previousMonthNumberOfDays - weekday + button.indexContainer+1)] forState:UIControlStateNormal];
                 button.indexDay = previousMonthNumberOfDays - weekday + button.indexContainer+1;
                 button.indexMonth = month == 1 ? 12 : month-1;
                 button.indexYear = month == 1 ? year-1 : year;
                 button.titleLabel.textColor = [UIColor colorWithRed:244.0/255.0 green:233.0/255.0 blue:211.0/255.0 alpha:1.0];
             }else{
-                [button setTitle:[NSString stringWithFormat:@"%li",(button.indexContainer-weekday-numberOfDays+1)] forState:UIControlStateNormal];
+                [button setTitle:[NSString stringWithFormat:@"%i",(button.indexContainer-weekday-numberOfDays+1)] forState:UIControlStateNormal];
                 button.indexDay = button.indexContainer-weekday-numberOfDays+1;
                 button.indexMonth = month == 12 ? 1 : month+1;
                 button.indexYear = month == 12 ? year+1 : year;

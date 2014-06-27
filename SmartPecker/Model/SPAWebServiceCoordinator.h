@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SPAWebServiceCoordinatorDelegate.h"
+#import "SPANetworkCoordinatorDelegate.h"
 
-@interface SPAWebServiceCoordinator : NSObject
+@interface SPAWebServiceCoordinator : NSObject <SPANetworkCoordinatorDelegate>
 
 @property (nonatomic,weak) id<SPAWebServiceCoordinatorDelegate> delegate;
 

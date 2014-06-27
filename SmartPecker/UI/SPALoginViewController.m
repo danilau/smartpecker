@@ -12,7 +12,6 @@
 #import "SPASubjectsViewController.h"
 #import "JASidePanelController.h"
 #import "SPANetworkCoordinator.h"
-#import "SPANetworkCoordinatorDelegate.h"
 #import "SPAAppDelegate.h"
 #import "SPAModelCoordinator.h"
 
@@ -93,31 +92,31 @@
 
 #pragma mark - SPANetworkCoordinatorDelegate
 
-- (void) didMakeAuthenticationAttemptWithResult:(BOOL) authenticated AndData:(NSData *)data{
-    [_indicator stopAnimating];
-    if(authenticated){
-        
-        
-        SPAAppDelegate *appDelegate = (SPAAppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
-        
-        appDelegate.jaSidePanelController = [[JASidePanelController alloc] init];
-        appDelegate.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
-        
-        
-        SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
-        
-        appDelegate.jaSidePanelController.centerPanel = appDelegate.spaNavigationController;
-        appDelegate.jaSidePanelController.leftPanel = spaSubjectsViewController;
-        
-        //appDelegate.jaSidePanelController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:appDelegate.jaSidePanelController animated:NO completion:nil];
-        
-    }else{
-        self.loginImageView.hidden = NO;
-    }
-}
+//- (void) didMakeAuthenticationAttemptWithResult:(BOOL) authenticated AndData:(NSData *)data{
+//    [_indicator stopAnimating];
+//    if(authenticated){
+//        
+//        
+//        SPAAppDelegate *appDelegate = (SPAAppDelegate*)[[UIApplication sharedApplication] delegate];
+//        
+//        SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
+//        
+//        appDelegate.jaSidePanelController = [[JASidePanelController alloc] init];
+//        appDelegate.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
+//        
+//        
+//        SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
+//        
+//        appDelegate.jaSidePanelController.centerPanel = appDelegate.spaNavigationController;
+//        appDelegate.jaSidePanelController.leftPanel = spaSubjectsViewController;
+//        
+//        //appDelegate.jaSidePanelController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//        [self presentViewController:appDelegate.jaSidePanelController animated:NO completion:nil];
+//        
+//    }else{
+//        self.loginImageView.hidden = NO;
+//    }
+//}
 
 #pragma mark - SPAModelActivationDelegate
 

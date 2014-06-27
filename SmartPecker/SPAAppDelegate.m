@@ -13,7 +13,6 @@
 #import "SPAScheduleViewController.h"
 #import "SPASubjectsViewController.h"
 #import "SPAModelCoordinator.h"
-#import "SPANetworkCoordinator.h"
 
 @implementation SPAAppDelegate
 
@@ -24,7 +23,6 @@
     
     //Model Coordinator
     SPAModelCoordinator* modelCoordinator = [SPAModelCoordinator sharedModelCoordinator];
-    NSLog(@"%u", modelCoordinator.activationMode);
     
     switch (modelCoordinator.activationMode) {
         case SPAModelActivationModeWebService:{
@@ -88,7 +86,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [[SPANetworkCoordinator sharedNetworkCoordinator] logOut];
 }
 
 
