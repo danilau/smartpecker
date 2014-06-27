@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		62112C01195B410B00E97C4F /* SPAWebServiceCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62112C00195B410B00E97C4F /* SPAWebServiceCoordinator.m */; };
 		62112C07195CBD0F00E97C4F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 62112C06195CBD0F00E97C4F /* Reachability.m */; };
+		62112C4A195D04C200E97C4F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62112C49195D04C200E97C4F /* CoreData.framework */; };
+		62112C4D195D060E00E97C4F /* SPAModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62112C4B195D060E00E97C4F /* SPAModel.xcdatamodeld */; };
 		62699F1C194E742100E2F1FA /* SPACalendarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F1B194E742100E2F1FA /* SPACalendarControl.m */; };
 		62699F1F194E7EF900E2F1FA /* SPACalendarNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F1E194E7EF900E2F1FA /* SPACalendarNavigationView.m */; };
 		62699F22194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 62699F21194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m */; };
@@ -67,6 +69,8 @@
 		62112C03195B579B00E97C4F /* SPAModelActivationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAModelActivationDelegate.h; sourceTree = "<group>"; };
 		62112C05195CBD0F00E97C4F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		62112C06195CBD0F00E97C4F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		62112C49195D04C200E97C4F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		62112C4C195D060E00E97C4F /* SPAModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SPAModel.xcdatamodel; sourceTree = "<group>"; };
 		62699F1A194E742100E2F1FA /* SPACalendarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarControl.h; sourceTree = "<group>"; };
 		62699F1B194E742100E2F1FA /* SPACalendarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACalendarControl.m; sourceTree = "<group>"; };
 		62699F1D194E7EF900E2F1FA /* SPACalendarNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACalendarNavigationView.h; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62112C4A195D04C200E97C4F /* CoreData.framework in Frameworks */,
 				62B4E55A19148C0C000EA9F1 /* CoreGraphics.framework in Frameworks */,
 				62B4E55C19148C0C000EA9F1 /* UIKit.framework in Frameworks */,
 				62B4E55819148C0C000EA9F1 /* Foundation.framework in Frameworks */,
@@ -208,6 +213,7 @@
 		62B4E55619148C0C000EA9F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62112C49195D04C200E97C4F /* CoreData.framework */,
 				62B4E55719148C0C000EA9F1 /* Foundation.framework */,
 				62B4E55919148C0C000EA9F1 /* CoreGraphics.framework */,
 				62B4E55B19148C0C000EA9F1 /* UIKit.framework */,
@@ -313,6 +319,7 @@
 				62C75576195534670030A90A /* SPANetworkCoordinator.m */,
 				62E1B12A195B3A7A005C7B03 /* SPAModelCoordinator.h */,
 				62E1B12B195B3A7A005C7B03 /* SPAModelCoordinator.m */,
+				62112C4B195D060E00E97C4F /* SPAModel.xcdatamodeld */,
 				62112C03195B579B00E97C4F /* SPAModelActivationDelegate.h */,
 				62112BFF195B410B00E97C4F /* SPAWebServiceCoordinator.h */,
 				62112C00195B410B00E97C4F /* SPAWebServiceCoordinator.m */,
@@ -435,6 +442,7 @@
 				62B4E56819148C0C000EA9F1 /* SPAAppDelegate.m in Sources */,
 				62112C01195B410B00E97C4F /* SPAWebServiceCoordinator.m in Sources */,
 				62C75577195534670030A90A /* SPANetworkCoordinator.m in Sources */,
+				62112C4D195D060E00E97C4F /* SPAModel.xcdatamodeld in Sources */,
 				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
 				62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */,
 				62B71D341918AB4100F4685C /* SPASubjectsCell.m in Sources */,
@@ -656,6 +664,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		62112C4B195D060E00E97C4F /* SPAModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				62112C4C195D060E00E97C4F /* SPAModel.xcdatamodel */,
+			);
+			currentVersion = 62112C4C195D060E00E97C4F /* SPAModel.xcdatamodel */;
+			path = SPAModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 62B4E54C19148C0C000EA9F1 /* Project object */;
 }

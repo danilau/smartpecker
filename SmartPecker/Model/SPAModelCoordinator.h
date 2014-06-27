@@ -22,10 +22,15 @@ typedef enum _SPAModelActivationMode {
 @property (nonatomic, readonly) SPAModelActivationMode activationMode;
 @property (nonatomic,strong) SPAWebServiceCoordinator* webServiceCoordinator;
 @property (nonatomic,weak) id<SPAModelActivationDelegate> activationDelegate;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (id)sharedModelCoordinator;
 
 - (void) activateViaCoreData;
 - (void) activateViaWebServiceWithLogin:(NSString*) login AndPassword:(NSString*) password;
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
 
 @end
