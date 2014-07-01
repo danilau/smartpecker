@@ -50,6 +50,10 @@
 		62B71D3F1918C37600F4685C /* SPASubjectAttributesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B71D3D1918C37600F4685C /* SPASubjectAttributesCell.xib */; };
 		62BAA5891953C6D500EE4B95 /* SPACalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BAA5881953C6D500EE4B95 /* SPACalendarDayButton.m */; };
 		62C75577195534670030A90A /* SPANetworkCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C75576195534670030A90A /* SPANetworkCoordinator.m */; };
+		62C9DE3219625473004E8C91 /* SPALesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9DE3119625473004E8C91 /* SPALesson.m */; };
+		62C9DE3B19625C9B004E8C91 /* SPATeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9DE3A19625C9B004E8C91 /* SPATeacher.m */; };
+		62C9DE3E19625E01004E8C91 /* SPALocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9DE3D19625E01004E8C91 /* SPALocation.m */; };
+		62C9DE4119626018004E8C91 /* SPASubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C9DE4019626018004E8C91 /* SPASubject.m */; };
 		62E1B12C195B3A7A005C7B03 /* SPAModelCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E1B12B195B3A7A005C7B03 /* SPAModelCoordinator.m */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +140,14 @@
 		62C75575195534670030A90A /* SPANetworkCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPANetworkCoordinator.h; sourceTree = "<group>"; };
 		62C75576195534670030A90A /* SPANetworkCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPANetworkCoordinator.m; sourceTree = "<group>"; };
 		62C7557819556B9B0030A90A /* SPANetworkCoordinatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPANetworkCoordinatorDelegate.h; sourceTree = "<group>"; };
+		62C9DE3019625473004E8C91 /* SPALesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPALesson.h; sourceTree = "<group>"; };
+		62C9DE3119625473004E8C91 /* SPALesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPALesson.m; sourceTree = "<group>"; };
+		62C9DE3919625C9B004E8C91 /* SPATeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPATeacher.h; sourceTree = "<group>"; };
+		62C9DE3A19625C9B004E8C91 /* SPATeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPATeacher.m; sourceTree = "<group>"; };
+		62C9DE3C19625E01004E8C91 /* SPALocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPALocation.h; sourceTree = "<group>"; };
+		62C9DE3D19625E01004E8C91 /* SPALocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPALocation.m; sourceTree = "<group>"; };
+		62C9DE3F19626018004E8C91 /* SPASubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPASubject.h; sourceTree = "<group>"; };
+		62C9DE4019626018004E8C91 /* SPASubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPASubject.m; sourceTree = "<group>"; };
 		62E1B12A195B3A7A005C7B03 /* SPAModelCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAModelCoordinator.h; sourceTree = "<group>"; };
 		62E1B12B195B3A7A005C7B03 /* SPAModelCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAModelCoordinator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -325,6 +337,7 @@
 		62C75574195534270030A90A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				62C9DE2F19625420004E8C91 /* ScheduleObjects */,
 				62112C4E195D137F00E97C4F /* ManagedObjects */,
 				62112C04195CBCE100E97C4F /* Reachability */,
 				62C7557819556B9B0030A90A /* SPANetworkCoordinatorDelegate.h */,
@@ -339,6 +352,21 @@
 				62112C02195B414B00E97C4F /* SPAWebServiceCoordinatorDelegate.h */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		62C9DE2F19625420004E8C91 /* ScheduleObjects */ = {
+			isa = PBXGroup;
+			children = (
+				62C9DE3F19626018004E8C91 /* SPASubject.h */,
+				62C9DE4019626018004E8C91 /* SPASubject.m */,
+				62C9DE3C19625E01004E8C91 /* SPALocation.h */,
+				62C9DE3D19625E01004E8C91 /* SPALocation.m */,
+				62C9DE3919625C9B004E8C91 /* SPATeacher.h */,
+				62C9DE3A19625C9B004E8C91 /* SPATeacher.m */,
+				62C9DE3019625473004E8C91 /* SPALesson.h */,
+				62C9DE3119625473004E8C91 /* SPALesson.m */,
+			);
+			path = ScheduleObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +476,7 @@
 				62B71D3E1918C37600F4685C /* SPASubjectAttributesCell.m in Sources */,
 				62B71D2819188A5A00F4685C /* UIViewController+JASidePanel.m in Sources */,
 				62699F301953805D00E2F1FA /* SPACalendarMonthLabel.m in Sources */,
+				62C9DE4119626018004E8C91 /* SPASubject.m in Sources */,
 				62699F1C194E742100E2F1FA /* SPACalendarControl.m in Sources */,
 				62B71D391918B6B000F4685C /* SPASubjectAttributesViewController.m in Sources */,
 				62B71CF9191729AD00F4685C /* SPANavigationController.m in Sources */,
@@ -458,13 +487,16 @@
 				62C75577195534670030A90A /* SPANetworkCoordinator.m in Sources */,
 				62112C4D195D060E00E97C4F /* SPAModel.xcdatamodeld in Sources */,
 				62B71D0219172AA400F4685C /* SPALoginViewController.m in Sources */,
+				62C9DE3E19625E01004E8C91 /* SPALocation.m in Sources */,
 				62B71D151918681E00F4685C /* SPAScheduleViewController.m in Sources */,
 				62B71D341918AB4100F4685C /* SPASubjectsCell.m in Sources */,
 				62BAA5891953C6D500EE4B95 /* SPACalendarDayButton.m in Sources */,
 				62B71D2F1918A60700F4685C /* SPASubjectsTitleCell.m in Sources */,
 				62699F1F194E7EF900E2F1FA /* SPACalendarNavigationView.m in Sources */,
+				62C9DE3219625473004E8C91 /* SPALesson.m in Sources */,
 				62699F22194FCC7F00E2F1FA /* UINavigationBar+SPACalendarNavigationBarCategory.m in Sources */,
 				62112C07195CBD0F00E97C4F /* Reachability.m in Sources */,
+				62C9DE3B19625C9B004E8C91 /* SPATeacher.m in Sources */,
 				62B71D201918860400F4685C /* SPASubjectsViewController.m in Sources */,
 				62B71D2719188A5A00F4685C /* JASidePanelController.m in Sources */,
 				62B71D1B19186A0100F4685C /* SPAScheduleCell.m in Sources */,

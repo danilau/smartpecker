@@ -46,6 +46,8 @@ typedef enum _SPAWebServiceMessageStatus {
     return(self);
 }
 
+#pragma mark - Web Service interaction
+
 - (void) makeAuthorizationWithName:(NSString*) aname AndPass:(NSString*) apass{
     //Drupal form authentication
     
@@ -150,6 +152,57 @@ typedef enum _SPAWebServiceMessageStatus {
     
     [formCodeTask resume];
 
+}
+
+- (void) performCommand:(NSString*) command WithParameter:(NSString*) param{
+    
+    NSURLSessionConfiguration* sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    sessionConfiguration.allowsCellularAccess = YES;
+    sessionConfiguration.timeoutIntervalForRequest = 30.0;
+    sessionConfiguration.timeoutIntervalForResource = 60.0;
+    sessionConfiguration.HTTPMaximumConnectionsPerHost = 1;
+    
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:nil delegateQueue:nil];
+   
+    
+    NSMutableURLRequest* commandRequest = [NSMutableURLRequest requestWithURL:_webServiceURL];
+    [commandRequest setHTTPMethod:@"POST"];
+    
+    NSString* postString = [NSString stringWithFormat:@"command=%@&param=%@",command,param];
+    
+    
+    [commandRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    //Task to obtain code from authorization form
+    NSURLSessionDataTask* commandTask = [session dataTaskWithRequest:commandRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error){
+        
+        if(error != nil){
+            if(error.code == -1009){
+                [self showMessageWithString:@"Интернет соединение отсутствует." AndStatus:SPAWebServiceMessageStatusError];
+            }
+            
+            return;
+        }
+        
+        [self didPerformCommand:command WithParameter:param AndDidRecieveData:data];
+      
+    
+    }];
+    
+    [commandTask resume];
+
+    
+    
+}
+
+- (void) didPerformCommand:(NSString*) command WithParameter:(NSString*) param AndDidRecieveData:(NSData*)data{
+
+}
+
+#pragma mark - Web Service API
+
+- (void)getRenderedWeek{
+    [self performCommand:@"get" WithParameter:@"renderedweak"];
 }
 
 - (void) showMessageWithString:(NSString *)string AndStatus:(SPAWebServiceMessageStatus)status{

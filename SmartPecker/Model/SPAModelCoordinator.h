@@ -13,7 +13,8 @@
 
 typedef enum _SPAModelActivationMode {
     SPAModelActivationModeCoreData = 0,
-    SPAModelActivationModeWebService
+    SPAModelActivationModeWebService,
+    SPAModelActivationModeUndefined
 } SPAModelActivationMode;
 
 @interface SPAModelCoordinator : NSObject <SPAWebServiceCoordinatorDelegate>

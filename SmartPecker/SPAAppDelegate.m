@@ -52,6 +52,9 @@
             modelCoordinator.activationDelegate = self;
             
         };break;
+        case SPAModelActivationModeUndefined:{
+            return NO;
+        };break;
     
 
     }

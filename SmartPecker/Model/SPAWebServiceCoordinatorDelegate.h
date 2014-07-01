@@ -11,5 +11,10 @@
 @protocol SPAWebServiceCoordinatorDelegate <NSObject>
 
 - (void) didMakeAuthentication;
+- (void) didReceiveRenderedWeek;
+- (void) didReceiveSchedule;
+- (void) didReceiveTeachers;
+- (void) didReceiveLocations;
+- (void) didReceiveSubjects;
 
 @end

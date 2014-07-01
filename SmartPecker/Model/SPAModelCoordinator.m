@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "SPAModelCoordinator.h"
 #import "ManagedObjects/InformationSchema.h"
+#import "SPALesson.h"
 
 @interface SPAModelCoordinator ()
 
@@ -21,7 +22,9 @@
 
 @end
 
-@implementation SPAModelCoordinator
+@implementation SPAModelCoordinator{
+    NSMutableArray* lessons;
+}
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -41,10 +44,13 @@
         _activated = NO;
         self.webServiceCoordinator = [[SPAWebServiceCoordinator alloc] initWithURL:[NSURL URLWithString:@"http://spectest.usbelar.by/smartpecker"]];
         self.webServiceCoordinator.delegate = self;
-        _activationMode = [self checkActivationMode];
         
         //CoreData initialization
         [self initSchema];
+        
+        _activationMode = [self checkActivationMode];
+        
+   
         
     }
     return self;
@@ -54,7 +60,19 @@
 
 - (SPAModelActivationMode) checkActivationMode{
     
-    return SPAModelActivationModeWebService;
+    NSNumber* baseInstalledValue = [self getSchemaParameter:@"baseInstalled"];
+    
+    switch ([baseInstalledValue integerValue]) {
+        case 0:{
+            return SPAModelActivationModeWebService;
+        };break;
+        case 1:{
+            return SPAModelActivationModeCoreData;
+        };break;
+        default:{
+            return SPAModelActivationModeUndefined;
+        };break;
+    }
     
 }
 
@@ -76,6 +94,27 @@
 #pragma mark - SPAWebServiceCoordinatorDelegate implementation
 
 - (void) didMakeAuthentication{
+    NSLog(@"Authentication is made");
+    [_webServiceCoordinator getRenderedWeek];
+}
+
+- (void) didReceiveRenderedWeek{
+    
+}
+
+- (void) didReceiveSchedule{
+    
+}
+
+- (void) didReceiveSubjects{
+    
+}
+
+- (void) didReceiveLocations{
+    
+}
+
+- (void) didReceiveTeachers{
     
 }
 
@@ -135,29 +174,7 @@
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
+
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -167,17 +184,22 @@
 
 - (void) initSchema{
     
-    NSLog(@"%ld",(long)[self getSchemaParameter:@"schemaInitialized"]);
+    NSNumber* schemaInitializedValue = [self getSchemaParameter:@"schemaInitialized"];
     
-    NSArray *schemaArray = [NSArray arrayWithObjects:@"schemaInitialized",@"baseInstalled", nil];
+    if([schemaInitializedValue integerValue] == 1) return;
     
-    for(NSString* paramName in schemaArray){
+    
+    NSDictionary* schemaDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@1,@"schemaInitialized",@0,@"baseInstalled", nil];
+    
+    for(NSString* key in schemaDictionary){
         InformationSchema* schemaObject = [NSEntityDescription insertNewObjectForEntityForName:@"InformationSchema" inManagedObjectContext:self.managedObjectContext];
+        
+        NSLog(@"%@", [schemaDictionary objectForKey:key]);
         
         if(schemaObject!=nil){
             
-            schemaObject.name = paramName;
-            schemaObject.value = @0;
+            schemaObject.name = key;
+            schemaObject.value = [schemaDictionary objectForKey:key];
             
             NSError* savingError;
             
@@ -199,7 +221,8 @@
     
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"InformationSchema"];
     
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == '%@'",param ]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@",param ]];
+    
     
     NSError *requestError = nil;
 
@@ -207,13 +230,14 @@
     
     if([results count] > 0){
     
-        NSLog(@"RequestError - %@",requestError);
+        //NSLog(@"RequestError - %@",requestError);
     
         InformationSchema *schemaInitializedObject = (InformationSchema *)results[0];
-    
+        
         return schemaInitializedObject.value;
         
     }else{
+   
         return nil;
     }
 }

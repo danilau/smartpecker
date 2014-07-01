@@ -16,7 +16,10 @@
 
 - (id) initWithURL:(NSURL*)url;
 
+//Web Service Interaction
 - (void) makeAuthorizationWithName:(NSString*) name AndPass:(NSString*) pass;
+//Web Service API
+- (void) getRenderedWeek;
 - (void) clearCookies;
 
 @end
