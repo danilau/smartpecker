@@ -10,4 +10,6 @@
 
 @interface SPASubjectAttributesViewController : UITableViewController
 
+@property (strong,nonatomic) NSString* subjectName;
+
 @end

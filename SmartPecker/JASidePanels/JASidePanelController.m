@@ -25,6 +25,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "JASidePanelController.h"
+#import "SPACalendarNavigationView.h"
 
 static char ja_kvoContext;
 
@@ -842,6 +843,13 @@ static char ja_kvoContext;
         self.tapView = [[UIView alloc] init];
     }
     [self _toggleScrollsToTopForCenter:NO left:YES right:NO];
+    
+    //SPACalendar customization
+    for (UIViewController* viewController in ((UINavigationController*)self.centerPanel).viewControllers) {
+        ((SPACalendarNavigationView*) viewController.navigationItem.titleView).opened = NO;
+        [viewController.navigationController.navigationBar setNeedsLayout];
+    }
+   
 }
 
 - (void)_showRightPanel:(BOOL)animated bounce:(BOOL)shouldBounce {

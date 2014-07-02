@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPAScheduleViewController.h"
 
 @interface SPASubjectsViewController : UITableViewController
+
+@property (nonatomic,weak) SPAScheduleViewController* spaScheduleViewController;
 
 @end

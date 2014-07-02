@@ -11,5 +11,6 @@
 @protocol SPAModelActivationDelegate <NSObject>
 
 - (void) modelActivationDone;
+- (void) modelAuthenticationDoneWithError:(BOOL) error;
 
 @end

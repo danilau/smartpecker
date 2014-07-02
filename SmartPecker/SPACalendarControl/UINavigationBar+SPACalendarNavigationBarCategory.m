@@ -49,17 +49,27 @@
                 //MainController UITableView offset
                 
                 
-                CGRect tableFrame = CGRectMake(0.0,0.0 , 320.0, 568.0);
+                CGRect tableFrame = CGRectMake(0.0,((SPACalendarNavigationView*)view).calendarHeight , 320.0, 568.0);
                 [((UITableView*)((SPACalendarNavigationView*)view).controller.view) setFrame:tableFrame];
-                for (UIView *tableSubview in [((UITableView*)((SPACalendarNavigationView*)view).controller.view) subviews]) {
-                    if ([[tableSubview.class description] isEqualToString:@"UITableViewWrapperView"]) {
-                        CGRect tableSubviewFrame = CGRectMake(0.0,((SPACalendarNavigationView*)view).calendarHeight, 320.0, 568.0);
-                        [tableSubview setFrame:tableSubviewFrame];
-                    }
-                }
+                ((UITableView*)((SPACalendarNavigationView*)view).controller.view).superview.backgroundColor = [UIColor whiteColor];
+                [((UITableView*)((SPACalendarNavigationView*)view).controller.view) reloadData];
+//                for (UIView *tableSubview in [((UITableView*)((SPACalendarNavigationView*)view).controller.view) subviews]) {
+//                    if ([[tableSubview.class description] isEqualToString:@"UITableViewWrapperView"]) {
+//                        CGRect tableSubviewFrame = CGRectMake(0.0,((SPACalendarNavigationView*)view).calendarHeight, 320.0, 568.0);
+//                        [tableSubview setFrame:tableSubviewFrame];
+//                        for (UIView* cellView in [tableSubview subviews]) {
+//                            NSLog(@"%@",[[cellView class] description]);
+//                            //CGRect newCellFrame = cellView.frame;
+//                            //newCellFrame.origin.y = cellView.frame.origin.y+((SPACalendarNavigationView*)view).calendarHeight;
+//                            //[cellView setFrame:newCellFrame];
+//                        }
+//                    }
+//                    if ([[tableSubview.class description] isEqualToString:@"_UITableViewCellSeparatorView"]) {
+//                        [tableSubview removeFromSuperview];
+//                    }
+//                }
                 
-                
-                
+                             
                 
             }else{
                 newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 44.0);
@@ -74,7 +84,7 @@
                 }
                 
                 //MainController UITableView offset
-            
+                //Check for mistakes
                 
                 CGRect tableFrame = CGRectMake(0.0,0.0 , 320.0, 568.0);
                 [((UITableView*)((SPACalendarNavigationView*)view).controller.view) setFrame:tableFrame];
@@ -83,6 +93,7 @@
                         CGRect tableSubviewFrame = CGRectMake(0.0,0.0, 320.0, 568.0);
                         [tableSubview setFrame:tableSubviewFrame];
                     }
+
                 }
                 
                 

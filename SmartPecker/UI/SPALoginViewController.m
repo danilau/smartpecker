@@ -17,6 +17,7 @@
 
 @interface SPALoginViewController (){
     UIActivityIndicatorView *_indicator;
+    BOOL _authenticated;
 }
 
 @property (strong, nonatomic) IBOutlet UITextField *loginTextField;
@@ -39,6 +40,7 @@
     if (self) {
         // Custom initialization
         [self setTitle:@"SmartPecker"];
+        _authenticated = NO;
         
     }
     return self;
@@ -74,54 +76,63 @@
     
     [modelCoordinator activateViaWebServiceWithLogin:self.loginTextField.text AndPassword:self.passwordTextField.text];
     
-//    SPANetworkCoordinator* coord = [SPANetworkCoordinator sharedNetworkCoordinator];
-//    coord.delegate = self;
-//    [coord makeAuthenticationWithName:self.loginTextField.text  AndPass:self.passwordTextField.text];
-//    if(_indicator == nil){
-//        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//        _indicator.frame = CGRectMake(0.0,0.0,47.0,47.0);
-//        NSLog(@"%f",self.loginImageView.frame.origin.x);
-//        _indicator.center = self.loginImageView.center;
-//        [self.view addSubview:_indicator];
-//    }
-//    self.loginImageView.hidden = YES;
-//    
-//    [_indicator startAnimating];
+    if(_indicator == nil){
+        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _indicator.frame = CGRectMake(0.0,0.0,47.0,47.0);
+        _indicator.center = self.loginImageView.center;
+        [self.view addSubview:_indicator];
+    }
+    self.loginImageView.hidden = YES;
+    
+    [_indicator startAnimating];
     
 }
 
-#pragma mark - SPANetworkCoordinatorDelegate
-
-//- (void) didMakeAuthenticationAttemptWithResult:(BOOL) authenticated AndData:(NSData *)data{
-//    [_indicator stopAnimating];
-//    if(authenticated){
-//        
-//        
-//        SPAAppDelegate *appDelegate = (SPAAppDelegate*)[[UIApplication sharedApplication] delegate];
-//        
-//        SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
-//        
-//        appDelegate.jaSidePanelController = [[JASidePanelController alloc] init];
-//        appDelegate.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
-//        
-//        
-//        SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
-//        
-//        appDelegate.jaSidePanelController.centerPanel = appDelegate.spaNavigationController;
-//        appDelegate.jaSidePanelController.leftPanel = spaSubjectsViewController;
-//        
-//        //appDelegate.jaSidePanelController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//        [self presentViewController:appDelegate.jaSidePanelController animated:NO completion:nil];
-//        
-//    }else{
-//        self.loginImageView.hidden = NO;
-//    }
-//}
 
 #pragma mark - SPAModelActivationDelegate
 
 - (void) modelActivationDone{
-     //NSLog(@"Activation is Done");
+    
+    if(_authenticated == YES){
+        
+        
+        [_indicator stopAnimating];
+  
+        
+        SPAAppDelegate *appDelegate = (SPAAppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        SPAScheduleViewController *spaScheduleViewController = [[SPAScheduleViewController alloc] init];
+        
+        appDelegate.jaSidePanelController = [[JASidePanelController alloc] init];
+        appDelegate.spaNavigationController = [[SPANavigationController alloc] initWithRootViewController:spaScheduleViewController];
+        
+        
+        SPASubjectsViewController *spaSubjectsViewController = [[SPASubjectsViewController alloc] init];
+        
+        appDelegate.jaSidePanelController.centerPanel = appDelegate.spaNavigationController;
+        appDelegate.jaSidePanelController.leftPanel = spaSubjectsViewController;
+        
+        SPAModelCoordinator* modelCoordinator = [SPAModelCoordinator sharedModelCoordinator];
+        modelCoordinator.subjectsActivationDelegate = (id<SPAModelSubjectsActivationDelegate>)spaSubjectsViewController;
+        spaSubjectsViewController.spaScheduleViewController = spaScheduleViewController;
+        
+        //appDelegate.jaSidePanelController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:appDelegate.jaSidePanelController animated:NO completion:nil];
+        });
+    }
+
+}
+
+- (void)modelAuthenticationDoneWithError:(BOOL) error{
+    _authenticated = !error;
+
+    if(error == YES){
+    
+        [_indicator stopAnimating];
+        self.loginImageView.hidden = NO;
+    
+    }
 }
 
 @end

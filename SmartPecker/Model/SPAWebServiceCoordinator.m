@@ -8,6 +8,10 @@
 
 #import "SPAWebServiceCoordinator.h"
 #import "SPANetworkCoordinator.h"
+#import "SPARenderedLesson.h"
+#import "SPASubject.h"
+#import "SPATeacher.h"
+#import "SPALesson.h"
 
 typedef enum _SPAWebServiceMessageStatus {
     SPAWebServiceMessageStatusError = 0,
@@ -124,19 +128,35 @@ typedef enum _SPAWebServiceMessageStatus {
                 
                 switch (httpResponse.statusCode) {
                     case 200:{
-                        [self showMessageWithString:@"Вход осуществлен успешно." AndStatus:SPAWebServiceMessageStatusError];
+                        //[self showMessageWithString:@"Вход осуществлен успешно." AndStatus:SPAWebServiceMessageStatusError];
                         dispatch_sync(dispatch_get_main_queue(), ^(){
-                            if([[self delegate] respondsToSelector:@selector(didMakeAuthentication)]) {
-                                [[self delegate] didMakeAuthentication];
-                                
-                            }
+
+                        if([[self delegate] respondsToSelector:@selector(didMakeAuthenticationWithError:)]) {
+                            [[self delegate] didMakeAuthenticationWithError:NO];
+                        }
                         });
                     };break;
                     case 401:{
-                        [self showMessageWithString:@"Неверный логин либо пароль." AndStatus:SPAWebServiceMessageStatusError];
+                        dispatch_sync(dispatch_get_main_queue(), ^(){
+
+                        if([[self delegate] respondsToSelector:@selector(didMakeAuthenticationWithError:)]) {
+                            [[self delegate] didMakeAuthenticationWithError:YES];
+                            
+                        }
+             
+                            [self showMessageWithString:@"Неверный логин либо пароль." AndStatus:SPAWebServiceMessageStatusError];
+                        });
+                        
                     };break;
                     default:{
-                        [self showMessageWithString:@"Ошибка сервера при авторизации." AndStatus:SPAWebServiceMessageStatusError];
+                        dispatch_sync(dispatch_get_main_queue(), ^(){
+
+                        if([[self delegate] respondsToSelector:@selector(didMakeAuthenticationWithError:)]) {
+                            [[self delegate] didMakeAuthenticationWithError:YES];
+                            
+                        }
+                                                    [self showMessageWithString:@"Ошибка сервера при авторизации." AndStatus:SPAWebServiceMessageStatusError];
+                        });
                     };break;
                 }
                 
@@ -196,13 +216,149 @@ typedef enum _SPAWebServiceMessageStatus {
 }
 
 - (void) didPerformCommand:(NSString*) command WithParameter:(NSString*) param AndDidRecieveData:(NSData*)data{
+    
+    if ([command isEqualToString:@"get"]) {
+        if ([param isEqualToString:@"renderedweek"]) {
+            
+            NSError* error;
+            NSMutableDictionary *renderedWeek = [NSJSONSerialization
+                                               JSONObjectWithData:data
+                                               options:NSJSONReadingMutableContainers
+                                               error:&error];
+            NSMutableArray* monday = [[NSMutableArray alloc] init];
+            NSMutableArray* tuesday = [[NSMutableArray alloc] init];
+            NSMutableArray* wednesday = [[NSMutableArray alloc] init];
+            NSMutableArray* thursday = [[NSMutableArray alloc] init];
+            NSMutableArray* friday = [[NSMutableArray alloc] init];
+            NSMutableArray* saturday = [[NSMutableArray alloc] init];
+            NSMutableArray* sunday = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary* lesson in renderedWeek) {
+                SPARenderedLesson* spaRenderedLesson = [[SPARenderedLesson alloc] initWithDictionary:lesson];
+                switch (spaRenderedLesson.weekday) {
+                    case 1:{
+                        [monday addObject:spaRenderedLesson];
+                    };break;
+                    case 2:{
+                        [tuesday addObject:spaRenderedLesson];
+                    };break;
+                    case 3:{
+                        [wednesday addObject:spaRenderedLesson];
+                    };break;
+                    case 4:{
+                        [thursday addObject:spaRenderedLesson];
+                    };break;
+                    case 5:{
+                        [friday addObject:spaRenderedLesson];
+                    };break;
+                    case 6:{
+                        [saturday addObject:spaRenderedLesson];
+                    };break;
+                    case 7:{
+                        [sunday addObject:spaRenderedLesson];
+                    };break;
+                    default:
+                        break;
+                }
+            }
+            
+            
+            NSArray* week = [[NSArray alloc] initWithObjects:monday,tuesday,wednesday,thursday,friday,saturday,sunday, nil];
+            
+            if([[self delegate] respondsToSelector:@selector(didReceiveRenderedWeek:)]) {
+                [[self delegate] didReceiveRenderedWeek:week];
+                
+            }
+            
+            return;
+        }
+        
+        if ([param isEqualToString:@"subjects"]) {
+            NSError* error;
+            NSMutableDictionary *dictSubjects = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:NSJSONReadingMutableContainers
+                                                 error:&error];
+            NSMutableArray* subjects = [[NSMutableArray alloc] init];
+            for (NSDictionary* dictSubject in dictSubjects) {
+               
+                SPASubject *subject = [[SPASubject alloc] initWithName: [dictSubject objectForKey:@"name"] AndId:[[dictSubject objectForKey:@"id"] integerValue]];
+                [subjects addObject:subject];
+            }
+            
+            if([[self delegate] respondsToSelector:@selector(didReceiveSubjects:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                [[self delegate] didReceiveSubjects:subjects];
+                });
+                
+            }
+            
+            return;
+        }
+        
+        if ([param isEqualToString:@"teachers"]) {
+            NSError* error;
+            NSMutableDictionary *dictTeachers = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:NSJSONReadingMutableContainers
+                                                 error:&error];
+            NSMutableArray* teachers = [[NSMutableArray alloc] init];
+            for (NSDictionary* dictTeacher in dictTeachers) {
+                
+                SPATeacher *teacher = [[SPATeacher alloc] initWithFirstName:[dictTeacher objectForKey:@"firstname"] AndMiddleName:[dictTeacher objectForKey:@"middlename"] AndLastName:[dictTeacher objectForKey:@"lastname"] AndId:[[dictTeacher objectForKey:@"id"] integerValue]];
+                [teachers addObject:teacher];
+            }
+            
+            if([[self delegate] respondsToSelector:@selector(didReceiveTeachers:)]) {
+                [[self delegate] didReceiveTeachers:teachers];
+            }
+            
+            return;
+        }
+        
+        if ([param isEqualToString:@"schedule"]) {
+            NSError* error;
+            NSMutableDictionary *dictLessons = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:NSJSONReadingMutableContainers
+                                                 error:&error];
+            NSMutableArray* lessons = [[NSMutableArray alloc] init];
+            for (NSDictionary* dictLesson in dictLessons) {
+                
+                SPALesson *lesson = [[SPALesson alloc] initWithDictionary:dictLesson];
+                [lessons addObject:lesson];
+            }
+            
+            if([[self delegate] respondsToSelector:@selector(didReceiveTeachers:)]) {
+                [[self delegate] didReceiveScheduleWithLessons:lessons];
+            }
+            
+            return;
+        }
 
+    }
 }
 
 #pragma mark - Web Service API
 
 - (void)getRenderedWeek{
-    [self performCommand:@"get" WithParameter:@"renderedweak"];
+    [self performCommand:@"get" WithParameter:@"renderedweek"];
+}
+
+- (void)getSubjects{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self performCommand:@"get" WithParameter:@"subjects"];
+    });
+}
+- (void)getTeachers{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self performCommand:@"get" WithParameter:@"teachers"];
+    });
+}
+- (void)getSchedule{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self performCommand:@"get" WithParameter:@"schedule"];
+    });
 }
 
 - (void) showMessageWithString:(NSString *)string AndStatus:(SPAWebServiceMessageStatus)status{

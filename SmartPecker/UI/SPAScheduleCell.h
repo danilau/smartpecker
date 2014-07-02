@@ -11,6 +11,11 @@
 @interface SPAScheduleCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *subjectLabel;
+@property (strong, nonatomic) IBOutlet UILabel *classesLabel;
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UILabel *teacherLabel;
+@property (strong, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *finishTimeLabel;
 
 
 @end

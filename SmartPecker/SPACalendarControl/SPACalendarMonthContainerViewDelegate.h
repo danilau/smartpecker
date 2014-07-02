@@ -10,6 +10,6 @@
 
 @protocol SPACalendarMonthContainerViewDelegate <NSObject>
 
-- (void) dateFromCalendarWithDay:(NSInteger) day AndMonth:(NSInteger) month AndYear:(NSInteger) year;
+- (void) dateFromCalendarWithDay:(NSInteger) day AndMonth:(NSInteger) month AndYear:(NSInteger) year AndWeekDay:(NSInteger) weekday;
 
 @end

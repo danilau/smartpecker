@@ -13,6 +13,7 @@
 #import "SPAScheduleViewController.h"
 #import "SPASubjectsViewController.h"
 #import "SPAModelCoordinator.h"
+#import "SPAModelSubjectsActivationDelegate.h"
 
 @implementation SPAAppDelegate
 
@@ -46,6 +47,7 @@
             self.jaSidePanelController = [[JASidePanelController alloc] init];
             self.jaSidePanelController.centerPanel = self.spaNavigationController;
             self.jaSidePanelController.leftPanel = spaSubjectsViewController;
+            modelCoordinator.subjectsActivationDelegate = (id<SPAModelSubjectsActivationDelegate>)spaSubjectsViewController;
             
             self.window.rootViewController = self.jaSidePanelController;
             
@@ -96,6 +98,10 @@
 
 - (void) modelActivationDone{
     NSLog(@"Activation is Done");
+}
+
+- (void) modelAuthenticationDoneWithError:(BOOL)error{
+    
 }
 
 @end

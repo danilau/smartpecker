@@ -10,6 +10,7 @@
 #import "SPAModelCoordinator.h"
 #import "ManagedObjects/InformationSchema.h"
 #import "SPALesson.h"
+#import "SPASubject.h"
 
 @interface SPAModelCoordinator ()
 
@@ -22,9 +23,7 @@
 
 @end
 
-@implementation SPAModelCoordinator{
-    NSMutableArray* lessons;
-}
+@implementation SPAModelCoordinator
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -84,29 +83,40 @@
 
 - (void) activateViaWebServiceWithLogin:(NSString*) login AndPassword:(NSString*) password{
     [self.webServiceCoordinator makeAuthorizationWithName:login AndPass:password];
-        
-    if([[self activationDelegate] respondsToSelector:@selector(modelActivationDone)]) {
-        [[self activationDelegate] modelActivationDone];
-    }
 
 }
 
 #pragma mark - SPAWebServiceCoordinatorDelegate implementation
 
-- (void) didMakeAuthentication{
+- (void) didMakeAuthenticationWithError:(BOOL)error{
     NSLog(@"Authentication is made");
-    [_webServiceCoordinator getRenderedWeek];
+    if([[self activationDelegate] respondsToSelector:@selector(modelAuthenticationDoneWithError:)]) {
+        [[self activationDelegate] modelAuthenticationDoneWithError:error];
+    }
+    if(!error) [_webServiceCoordinator getRenderedWeek];
 }
 
-- (void) didReceiveRenderedWeek{
+- (void) didReceiveRenderedWeek:(NSArray*) week{
+    _week = week;
+    _activated = YES;
+    if([[self activationDelegate] respondsToSelector:@selector(modelActivationDone)]) {
+        [[self activationDelegate] modelActivationDone];
+    }
+    [_webServiceCoordinator getSubjects];
+}
+
+- (void) didReceiveScheduleWithLessons:(NSMutableArray *)lessons{
+    _lessons = lessons;
+    NSLog(@"dsfs");
+}
+
+- (void) didReceiveSubjects:(NSMutableArray *)subjects{
     
-}
-
-- (void) didReceiveSchedule{
-    
-}
-
-- (void) didReceiveSubjects{
+    _subjects = subjects;
+    if([[self subjectsActivationDelegate] respondsToSelector:@selector(didActivateSubjectsWithResult:)]) {
+        [[self subjectsActivationDelegate] didActivateSubjectsWithResult:YES];
+    }
+  
     
 }
 
@@ -114,8 +124,8 @@
     
 }
 
-- (void) didReceiveTeachers{
-    
+- (void) didReceiveTeachers:(NSMutableArray *)teachers{
+    _teachers = teachers;
 }
 
 #pragma mark - CoreData methods implementation

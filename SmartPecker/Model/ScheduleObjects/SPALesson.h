@@ -13,11 +13,16 @@
 
 @interface SPALesson : NSObject
 
+@property (nonatomic) NSString* startTime;
+@property (nonatomic) NSString* finishTime;
+@property (nonatomic) NSInteger weekday;
+
 @property (nonatomic,strong) SPASubject* subject;
 @property (nonatomic,strong) SPATeacher* teacher;
 @property (nonatomic,strong) SPALocation* location;
 
 - (id)init;
 - (id)initWithSubject:(SPASubject*) subject AndTeacher:(SPATeacher*) teacher AndLocation:(SPALocation*) location;
+- (id)initWithDictionary:(NSDictionary*) dict;
 
 @end

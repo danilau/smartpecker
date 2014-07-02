@@ -13,11 +13,15 @@
 #import "SPACalendarNavigationView.h"
 #import "SPAAppDelegate.h"
 #import "SPACalendarMonthContainerViewDelegate.h"
+#import "SPAModelCoordinator.h"
+#import "SPARenderedLesson.h"
+
 
 @interface SPAScheduleViewController (){
     NSInteger _activeDay;
     NSInteger _activeMonth;
     NSInteger _activeYear;
+    NSInteger _activeWeekDay;
 }
 
 @end
@@ -31,10 +35,12 @@
         // Custom initialization
         NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDate* todayDate = [NSDate date];
-        NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:todayDate];
+        NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit) fromDate:todayDate];
         _activeDay = [todayComponents day];
         _activeMonth = [todayComponents month];
         _activeYear = [todayComponents year];
+        _activeWeekDay = [todayComponents weekday];
+
     }
     return self;
 }
@@ -81,10 +87,18 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 7;
+    SPAModelCoordinator* coordinator = [SPAModelCoordinator sharedModelCoordinator];
+    
+    return [coordinator.week[_activeWeekDay-1] count];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SPAModelCoordinator* coordinator = [SPAModelCoordinator sharedModelCoordinator];
+    
+    SPARenderedLesson* lesson = (SPARenderedLesson*)coordinator.week[_activeWeekDay-1][indexPath.row];
+    
+    
     SPASubjectAttributesViewController *spaSubjectAttributesViewController = [[SPASubjectAttributesViewController alloc] init];
+    spaSubjectAttributesViewController.subjectName = lesson.subjectName;
     self.navigationItem.backBarButtonItem =[[UIBarButtonItem alloc] initWithTitle:@"Назад"
                                                                             style:UIBarButtonItemStyleBordered
                                                                            target:nil
@@ -103,7 +117,21 @@
         
     }
     // Configure the cell...
-    cell.subjectLabel.text = [NSString stringWithFormat:@"%li",(long)_activeDay];
+    SPAModelCoordinator* coordinator = [SPAModelCoordinator sharedModelCoordinator];
+    
+    SPARenderedLesson* lesson = (SPARenderedLesson*)coordinator.week[_activeWeekDay-1][indexPath.row];
+    
+    NSArray* startDateComponents = [lesson.startTime componentsSeparatedByString:@" "];
+    NSArray* startTimeComponents = [(NSString*)startDateComponents[1] componentsSeparatedByString:@":"];
+    NSArray* finishDateComponents = [lesson.finishTime componentsSeparatedByString:@" "];
+    NSArray* finishTimeComponents = [(NSString*)finishDateComponents[1] componentsSeparatedByString:@":"];
+    
+    cell.startTimeLabel.text = [NSString stringWithFormat:@"%@:%@",startTimeComponents[0],startTimeComponents[1]];
+    cell.finishTimeLabel.text = [NSString stringWithFormat:@"%@:%@",finishTimeComponents[0],finishTimeComponents[1]];
+    cell.subjectLabel.text = [NSString stringWithFormat:@"%@",lesson.subjectName];
+    cell.teacherLabel.text = [NSString stringWithFormat:@"%@",lesson.teacherName];
+    cell.classesLabel.text = [NSString stringWithFormat:@"%@",lesson.classesName];
+    cell.locationLabel.text = [NSString stringWithFormat:@"%@",lesson.locationName];
     return cell;
 }
 
@@ -112,11 +140,13 @@
 }
 
 #pragma mark SPACalendarMonthContainerViewDelegate protocol implementation
-- (void) dateFromCalendarWithDay:(NSInteger) day AndMonth:(NSInteger) month AndYear:(NSInteger) year{
+- (void) dateFromCalendarWithDay:(NSInteger) day AndMonth:(NSInteger) month AndYear:(NSInteger) year AndWeekDay:(NSInteger)weekday{
     _activeDay = day;
     _activeMonth = month;
     _activeYear = year;
-    NSLog(@"%li %li %li",(long)day,(long)month,(long)year);
+    _activeWeekDay = weekday;
+    
+    [self.tableView reloadData];
 }
 
 /*

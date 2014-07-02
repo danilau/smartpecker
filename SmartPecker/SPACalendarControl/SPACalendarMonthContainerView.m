@@ -18,9 +18,11 @@
     NSInteger _todayDay;
     NSInteger _todayMonth;
     NSInteger _todayYear;
+    NSInteger _todayWeekDay;
     NSInteger _activeDay;
     NSInteger _activeMonth;
     NSInteger _activeYear;
+    NSInteger _activeWeekDay;
  
     UIImage* _todayImage;
     UIImage* _currentImage;
@@ -39,10 +41,11 @@
         // Initialization code
         _calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDate* todayDate = [NSDate date];
-        NSDateComponents* todayComponents = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:todayDate];
+        NSDateComponents* todayComponents = [_calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit) fromDate:todayDate];
         _todayDay = _activeDay = [todayComponents day];
         _todayMonth = _activeMonth = [todayComponents month];
         _todayYear = _activeYear = [todayComponents year];
+        _todayWeekDay = _activeWeekDay = [todayComponents weekday];
 
         _todayImage = [UIImage imageNamed:@"calendar_daycurrent.png"];
         _currentImage = [UIImage imageNamed:@"calendar_dayactive.png"];
@@ -110,9 +113,10 @@
     _activeDay = sender.indexDay;
     _activeMonth = sender.indexMonth;
     _activeYear = sender.indexYear;
+    _activeWeekDay = sender.indexWeekDay;
     
-    if([[self delegate] respondsToSelector:@selector(dateFromCalendarWithDay:AndMonth:AndYear:)]) {
-        [[self delegate] dateFromCalendarWithDay:_activeDay AndMonth:_activeMonth AndYear:_activeYear];
+    if([[self delegate] respondsToSelector:@selector(dateFromCalendarWithDay:AndMonth:AndYear:AndWeekDay:)]) {
+        [[self delegate] dateFromCalendarWithDay:_activeDay AndMonth:_activeMonth AndYear:_activeYear AndWeekDay:_activeWeekDay];
     }
     
     [self.calendarNavigatioView reloadView];
@@ -182,11 +186,12 @@
     
     NSInteger previousMonthNumberOfDays = previousMonthDays.length;
     
-
+    NSInteger weekDayIndex = 1;
     
     for(SPACalendarDayButton* button in _dayButtons){
         
         [button setSelected:NO];
+        button.indexWeekDay = weekDayIndex;
         
         if(button.indexContainer >= indexContainerStart && button.indexContainer <= indexContainerFinish){
             [button setTitle:[NSString stringWithFormat:@"%i",(button.indexContainer-weekday+1)] forState:UIControlStateNormal];
@@ -194,7 +199,6 @@
             button.indexDay = button.indexContainer-weekday+1;
             button.indexMonth = month;
             button.indexYear = year;
-            
           
         }else{
             if (button.indexContainer < indexContainerStart) {
@@ -222,6 +226,8 @@
         }else{
             [button setBackgroundImage:nil forState:UIControlStateNormal];
         }
+        
+        weekDayIndex = (weekDayIndex == 7)?1:weekDayIndex+1;
 
         
     }

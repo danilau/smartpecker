@@ -10,11 +10,11 @@
 
 @protocol SPAWebServiceCoordinatorDelegate <NSObject>
 
-- (void) didMakeAuthentication;
-- (void) didReceiveRenderedWeek;
-- (void) didReceiveSchedule;
-- (void) didReceiveTeachers;
+- (void) didMakeAuthenticationWithError:(BOOL)error;
+- (void) didReceiveRenderedWeek:(NSArray*) week;
+- (void) didReceiveScheduleWithLessons:(NSMutableArray*) lessons;
+- (void) didReceiveTeachers:(NSMutableArray*) teachers;
 - (void) didReceiveLocations;
-- (void) didReceiveSubjects;
+- (void) didReceiveSubjects:(NSMutableArray*) subjects;
 
 @end

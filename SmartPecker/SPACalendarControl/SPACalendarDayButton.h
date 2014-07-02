@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSInteger indexContainer;
 @property (nonatomic) NSInteger indexDay;
+@property (nonatomic) NSInteger indexWeekDay;
 @property (nonatomic) NSInteger indexMonth;
 @property (nonatomic) NSInteger indexYear;
 

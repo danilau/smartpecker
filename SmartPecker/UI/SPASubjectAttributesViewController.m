@@ -23,6 +23,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     [self setTitle:@"SmartPecker"];
     [self.tableView registerNib:[UINib nibWithNibName:@"SPASubjectAttributesCell" bundle:nil] forCellReuseIdentifier:@"SubjectAttributesCell"];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
    
@@ -55,9 +56,12 @@
     NSString *sectionTitle;
     
     switch (section) {
-        case 0:
-            sectionTitle = @"Аналоговая схемотехника и микроэлектронные устройства цифровой радиосвязи";
-            break;
+        case 0:{
+            if(self.subjectName != nil)
+                sectionTitle = self.subjectName;
+            else
+                sectionTitle = @"";
+        };break;
         case 1:
             sectionTitle = @"Материалы";
             break;

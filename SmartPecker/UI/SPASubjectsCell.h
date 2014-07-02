@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SPASubjectsCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonatomic) NSInteger subjectId;
 
 @end

@@ -20,6 +20,10 @@
 - (void) makeAuthorizationWithName:(NSString*) name AndPass:(NSString*) pass;
 //Web Service API
 - (void) getRenderedWeek;
+- (void) getSubjects;
+- (void) getTeachers;
+- (void) getSchedule;
+//Cookie cleaning
 - (void) clearCookies;
 
 @end

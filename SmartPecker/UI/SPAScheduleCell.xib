@@ -88,7 +88,12 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="classesLabel" destination="D6D-Pu-TYX" id="e3W-9Y-kxF"/>
+                <outlet property="finishTimeLabel" destination="HNS-hF-nBP" id="ASi-bB-A4N"/>
+                <outlet property="locationLabel" destination="h3C-tn-FaW" id="Atx-bk-fXh"/>
+                <outlet property="startTimeLabel" destination="ZHR-5v-n3P" id="xhd-7L-2l4"/>
                 <outlet property="subjectLabel" destination="Vxj-ZW-3Vc" id="U0w-zM-NWf"/>
+                <outlet property="teacherLabel" destination="ger-B0-Ij4" id="HrS-OO-h6H"/>
             </connections>
         </tableViewCell>
     </objects>

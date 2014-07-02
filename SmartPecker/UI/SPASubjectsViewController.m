@@ -9,8 +9,17 @@
 #import "SPASubjectsViewController.h"
 #import "SPASubjectsTitleCell.h"
 #import "SPASubjectsCell.h"
+#import "SPASubjectAttributesViewController.h"
+#import "SPAModelSubjectsActivationDelegate.h"
+#import "SPAModelCoordinator.h"
+#import "SPASubject.h"
+#import "SPAAppDelegate.h"
+#import "JASidePanelController.h"
 
-@interface SPASubjectsViewController ()
+@interface SPASubjectsViewController (){
+    UIActivityIndicatorView *_indicator;
+    __weak NSArray *subjects;
+}
 
 @end
 
@@ -28,6 +37,27 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"SPASubjectsCell" bundle:nil] forCellReuseIdentifier:@"SubjectsCell"];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    SPAModelCoordinator* modelCoordinator = [SPAModelCoordinator sharedModelCoordinator];
+
+    if(modelCoordinator.subjects == nil){
+        if(_indicator == nil){
+            _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            _indicator.frame = CGRectMake(0.0,0.0,47.0,47.0);
+            _indicator.center = self.tableView.center;
+            [self.tableView addSubview:_indicator];
+        }
+        for (UIView* subview in [self.tableView subviews]) {
+            subview.hidden = YES;
+        }
+
+        
+        [_indicator startAnimating];
+
+        
+    }else{
+        subjects = modelCoordinator.subjects;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,16 +70,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
-    return 10;
+    
+    return (subjects!=nil)?([subjects count]+1):0;
 }
 
 
@@ -72,14 +102,61 @@
             cell = [[SPASubjectsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         // Configure the cell...
+        if(subjects!=nil){
+            cell.nameLabel.text = ((SPASubject*)subjects[indexPath.row-1]).name;
+            cell.subjectId = ((SPASubject*)subjects[indexPath.row-1]).subjectId;
+            //cell.nameLabel.text = @"DFG";
+        }
         return cell;
     }
 
 }
 
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 65.0f;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    SPAAppDelegate *appDelegate = (SPAAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [appDelegate.jaSidePanelController showCenterPanelAnimated:YES];
+    
+    SPASubjectAttributesViewController *spaSubjectAttributesViewController = [[SPASubjectAttributesViewController alloc] init];
+    spaSubjectAttributesViewController.subjectName = ((SPASubject*)subjects[indexPath.row-1]).name;
+    self.spaScheduleViewController.navigationItem.backBarButtonItem =[[UIBarButtonItem alloc] initWithTitle:@"Назад"
+                                                                            style:UIBarButtonItemStyleBordered
+                                                                           target:nil
+                                                                           action:nil];
+    self.spaScheduleViewController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    [self.spaScheduleViewController.navigationController pushViewController:spaSubjectAttributesViewController animated:YES];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+
+}
+
+#pragma mark - SPAModelSubjectsActivationDelegate implementation
+
+- (void) didActivateSubjectsWithResult:(BOOL) result{
+    
+    [_indicator stopAnimating];
+    [_indicator removeFromSuperview];
+    
+    SPAModelCoordinator* modelCoordinator = [SPAModelCoordinator sharedModelCoordinator];
+    subjects = modelCoordinator.subjects;
+    
+    [self.tableView reloadData];
+    
+    for (UIView* subview in [self.tableView subviews]) {
+        subview.hidden = NO;
+    }
     
 }
 
