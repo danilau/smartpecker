@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Class" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="relClasses" inverseEntity="Location" syncable="YES"/>
+        <relationship name="relScheduleItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Schedule" inverseName="relClass" inverseEntity="Schedule" syncable="YES"/>
+        <relationship name="relSubject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subject" inverseName="relClasses" inverseEntity="Subject" syncable="YES"/>
+        <relationship name="relTeacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teacher" inverseName="relClasses" inverseEntity="Teacher" syncable="YES"/>
+        <relationship name="relTypeOfClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TypeOfClass" inverseName="relClasses" inverseEntity="TypeOfClass" syncable="YES"/>
+    </entity>
     <entity name="InformationSchema" representedClassName="Information_Schema" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="Location" syncable="YES">
+        <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="room" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Class" inverseName="relLocation" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <entity name="Schedule" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="weekDay" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="relClass" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Class" inverseName="relScheduleItems" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <entity name="Subject" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Class" inverseName="relSubject" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <entity name="Teacher" syncable="YES">
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Class" inverseName="relTeacher" inverseEntity="Class" syncable="YES"/>
+    </entity>
+    <entity name="TypeOfClass" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Class" inverseName="relTypeOfClass" inverseEntity="Class" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="InformationSchema" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="InformationSchema" positionX="-569" positionY="24" width="128" height="75"/>
+        <element name="Subject" positionX="-27" positionY="-142" width="128" height="88"/>
+        <element name="Location" positionX="189" positionY="252" width="128" height="133"/>
+        <element name="Teacher" positionX="-45" positionY="287" width="128" height="118"/>
+        <element name="TypeOfClass" positionX="169" positionY="-108" width="128" height="88"/>
+        <element name="Class" positionX="0" positionY="81" width="128" height="148"/>
+        <element name="Schedule" positionX="-335" positionY="269" width="128" height="118"/>
     </elements>
 </model>
